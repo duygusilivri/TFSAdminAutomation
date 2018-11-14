@@ -49,5 +49,10 @@ namespace WorkItems
             }
             Console.ReadKey();
         }
+
+        public static void UpdateWorkItem()
+        {
+
+        }
     }
 }

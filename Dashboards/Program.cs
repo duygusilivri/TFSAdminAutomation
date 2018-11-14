@@ -10,8 +10,8 @@ namespace Dashboards
 {
     class Program
     {
-        static string collectionUrl = "https://duygua.visualstudio.com";
-        static string personalAccessToken = "2qguzw7ppytyynnupkk4w3iztkizijsvhwyg2i5de327arry2oaq";
+        static string collectionUrl = "Your_Azure_DevOps_Url";
+        static string personalAccessToken = "Your_PAT";
 
         static void Main(string[] args)
         {

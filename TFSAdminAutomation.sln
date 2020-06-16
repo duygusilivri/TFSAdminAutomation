@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git", "Git\Git.csproj", "{E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Releases", "Releases\Releases.csproj", "{6F86F507-02FC-4331-BFBF-B1D4E14F56EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskAgent", "TaskAgent\TaskAgent.csproj", "{AA94C528-37B1-44A1-BCDE-63246C67DA76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{6F86F507-02FC-4331-BFBF-B1D4E14F56EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F86F507-02FC-4331-BFBF-B1D4E14F56EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F86F507-02FC-4331-BFBF-B1D4E14F56EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA94C528-37B1-44A1-BCDE-63246C67DA76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA94C528-37B1-44A1-BCDE-63246C67DA76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA94C528-37B1-44A1-BCDE-63246C67DA76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA94C528-37B1-44A1-BCDE-63246C67DA76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

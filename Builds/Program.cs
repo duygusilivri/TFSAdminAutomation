@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.Services.Client;
 using System.Net.Http;
 using System.Text;
 using System.Net.Http.Headers;
+using Microsoft.TeamFoundation.Core.WebApi;
 
 namespace Builds
 {
@@ -23,7 +24,7 @@ namespace Builds
 
         static void Main(string[] args)
         {
-            collectionUrl = "Your_Collection_Url";
+            //collectionUrl = "Your_Collection_Url";
             projectUrl = "Your_Project_Url";
             tfsAdminDomain = "Your_Azure_DevOps_Server_Domain";
             tfsAdminUsername = "Your_Azure_DevOps_Server_Username";
@@ -34,12 +35,12 @@ namespace Builds
             creds.Storage = new VssClientCredentialStorage();
 
             // Connect to TFS
-            connection = new VssConnection(new Uri(collectionUrl), creds);
+            //connection = new VssConnection(new Uri(collectionUrl), creds);
 
             string choice;
             do
             {
-                Console.WriteLine("\n\nType\n1 to create build definitions from a template\n0 to Exit");
+                Console.WriteLine("\n\nType\n4 to update all build retention policies\n0 to Exit");
                 choice = Console.ReadLine();
 
                 switch (choice)
@@ -54,6 +55,24 @@ namespace Builds
                     case "2":
                         {
                             QueueNewBuild();
+                            break;
+                        }
+                    case "3":
+                        {
+                            Console.WriteLine("Which collection?");
+                            collectionUrl = Console.ReadLine();
+                            Console.WriteLine("Which project?");
+                            string projectName = Console.ReadLine();
+                            Console.WriteLine("Which buildId?");
+                            string buildId = Console.ReadLine();
+                            UpdateBuildDefinitionRetention(projectName, int.Parse(buildId));
+                            break;
+                        }
+                    case "4":
+                        {
+                            Console.WriteLine("Which collection?");
+                            collectionUrl = Console.ReadLine();
+                            UpdateAllBuildDefinitionRetention();
                             break;
                         }
                 }
@@ -93,6 +112,80 @@ namespace Builds
             await bhc.CreateDefinitionAsync(buildDefTemplate, teamProject);
         }
 
+        public async static void UpdateBuildDefinitionRetention(string teamProject, int buildId)
+        {
+            var tpc = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(collectionUrl));
+            var bhc = tpc.GetClient<BuildHttpClient>();
+
+            
+            BuildDefinition buildDefTemplate = (await bhc.GetDefinitionAsync(teamProject, buildId));
+            buildDefTemplate.RetentionRules[0].ArtifactsToDelete.Clear();
+
+
+            await bhc.UpdateDefinitionAsync(buildDefTemplate, teamProject);
+        }
+
+        public async static void UpdateAllBuildDefinitionRetention()
+        {
+            var tpc = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(collectionUrl));
+            var bhc = tpc.GetClient<BuildHttpClient>();
+
+            VssCredentials creds = new VssClientCredentials();
+            creds.Storage = new VssClientCredentialStorage();
+            connection = new VssConnection(new Uri(collectionUrl), creds);
+            ProjectHttpClient projectClient = connection.GetClient<ProjectHttpClient>();
+
+            List<BuildDefinitionReference> buildDefinitions = new List<BuildDefinitionReference>();
+
+
+            // Call to get the list of projects 
+            IEnumerable<TeamProjectReference> projects = projectClient.GetProjects(top: 1000).Result;
+
+            foreach (var project in projects)
+            {
+                
+                // Iterate (as needed) to get the full set of build definitions 
+                string continuationToken = null;
+                do
+                {
+                    IPagedList<BuildDefinitionReference> buildDefinitionsPage = bhc.GetDefinitionsAsync2(
+                        project: project.Name,
+                        continuationToken: continuationToken).Result;
+
+                    buildDefinitions.AddRange(buildDefinitionsPage);
+
+                    continuationToken = buildDefinitionsPage.ContinuationToken;
+                } while (!String.IsNullOrEmpty(continuationToken));
+            }
+
+            try
+            {
+                foreach (BuildDefinitionReference definition in buildDefinitions)
+                {
+                    string teamProject = definition.Project.Name;
+                    string definitionName = definition.Name;
+                    int definitionId = definition.Id;
+                    try
+                    { 
+                        BuildDefinition buildDefTemplate = (await bhc.GetDefinitionAsync(teamProject, definitionId));
+                        buildDefTemplate.RetentionRules[0].ArtifactsToDelete.Clear();
+                        await bhc.UpdateDefinitionAsync(buildDefTemplate, teamProject);
+
+                        Console.WriteLine("Completed - "+ "Project Name: " + teamProject +"  - Build Definition Name: " + definitionName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error - " + "Project Name: " + teamProject + "  - Build Definition Name: " + definitionName + "Error Msg: " + ex.Message);
+                    }
+
+                }
+                Console.Write("UPDATE COMPLETED");
+            }
+            catch (Exception ex)
+            {
+                string exception = ex.ToString();
+            }
+        }
 
         public static int FindBuildDefinitionId(string projectName, string definitionName)
         {

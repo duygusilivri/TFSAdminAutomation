@@ -113,8 +113,6 @@ namespace Projects
             TfsConfigurationServer configurationServer = TfsConfigurationServerFactory.GetConfigurationServer(configurationServerUri);
             var tpcService = configurationServer.GetService<ITeamProjectCollectionService>();
 
-            string[,] members = new string[100000, 5];
-            int i = 0;
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"c:\TfsAdminAutomationData\out_CollectionMembers.txt"))
             {
@@ -131,28 +129,42 @@ namespace Projects
 
                     foreach (var group in appGroups)
                     {
-                        Identity[] groupMembers = sec.ReadIdentities(SearchFactor.Sid, new string[] { group.Sid }, QueryMembership.Expanded);
-                        foreach (Identity member in groupMembers)
+                        try
                         {
-                            if (member.Members != null)
+                            Identity[] groupMembers = sec.ReadIdentities(SearchFactor.Sid, new string[] { group.Sid }, QueryMembership.Expanded);
+                            foreach (Identity member in groupMembers)
                             {
-                                foreach (string memberSid in member.Members)
+                                if (member.Members != null)
                                 {
-                                    Identity memberInfo = sec.ReadIdentity(SearchFactor.Sid, memberSid, QueryMembership.Expanded);
-                                    if (memberInfo.Type != IdentityType.WindowsUser)
-                                        continue;
+                                    foreach (string memberSid in member.Members)
+                                    {
+                                        try
+                                        {
+                                            Identity memberInfo = sec.ReadIdentity(SearchFactor.Sid, memberSid, QueryMembership.Expanded);
+                                            if (memberInfo.Type != IdentityType.WindowsUser)
+                                                continue;
 
-                                    members[i, 0] = tpc.Name;
-                                    members[i, 1] = "N/A";
-                                    members[i, 2] = memberInfo.AccountName;
-                                    members[i, 3] = memberInfo.Domain;
-                                    members[i, 4] = group.DisplayName;
-                                    file.WriteLine(tpc.Name + " # " + group.DisplayName + " # " + memberInfo.Domain + " # " + memberInfo.AccountName + " # " + memberInfo.DisplayName );
-                                    i++;
+                                            file.WriteLine(tpc.Name + " # " + group.DisplayName + " # " + memberInfo.Domain + " # " + memberInfo.AccountName + " # " + memberInfo.DisplayName);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            file.WriteLine("Could not read member info");
+                                            file.WriteLine(ex.InnerException);
+                                            continue;
+                                        }
 
+
+                                    }
                                 }
                             }
                         }
+                        catch(Exception ex)
+                        {
+                            file.WriteLine("Could not read group members: "+group.AccountName);
+                            file.WriteLine(ex.InnerException);
+                            continue;
+                        }
+                        
                     }
 
                 }
@@ -176,8 +188,6 @@ namespace Projects
             TfsConfigurationServer configurationServer = TfsConfigurationServerFactory.GetConfigurationServer(configurationServerUri);
             var tpcService = configurationServer.GetService<ITeamProjectCollectionService>();
 
-            string[,] members = new string[100000, 5];
-            int i = 0;
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"c:\TfsAdminAutomationData\out_CollectionMembersAdd.txt"))
             {
@@ -201,32 +211,36 @@ namespace Projects
                             {
                                 foreach (string memberSid in member.Members)
                                 {
-                                    Identity memberInfo = sec.ReadIdentity(SearchFactor.Sid, memberSid, QueryMembership.Expanded);
-                                    if (memberInfo.Type != IdentityType.WindowsUser)
-                                        continue;
+                                    try
+                                    { 
+                                        Identity memberInfo = sec.ReadIdentity(SearchFactor.Sid, memberSid, QueryMembership.Expanded);
+                                        if (memberInfo.Type != IdentityType.WindowsUser)
+                                            continue;
 
-                                    members[i, 0] = tpc.Name;
-                                    members[i, 1] = "N/A";
-                                    members[i, 2] = memberInfo.AccountName;
-                                    members[i, 3] = memberInfo.Domain;
-                                    members[i, 4] = group.DisplayName;
-                                    file.WriteLine(tpc.Name + " # " + group.DisplayName + " # " + memberInfo.Domain + " # " + memberInfo.AccountName + " # " + memberInfo.DisplayName);
+                              
+                                        file.WriteLine(tpc.Name + " # " + group.DisplayName + " # " + memberInfo.Domain + " # " + memberInfo.AccountName + " # " + memberInfo.DisplayName);
 
-                                    if(memberInfo.Domain.Equals("INTER"))
-                                    {
-                                        string username = "INTERTECH\\" + memberInfo.AccountName;
-                                        string groupname = "[" + tpc.Name + "]\\" + group.DisplayName;
-                                        var result = AddUserToGroup(username, groupname, tfsProjectCollection.Name);
-                                        if (result)
-                                            file.WriteLine("Added");
-                                        else
-                                            file.WriteLine("Cannot be added");
+                                        if(memberInfo.Domain.Equals("INTER"))
+                                        {
+                                            string username = "INTERTECH\\" + memberInfo.AccountName;
+                                            string groupname = "[" + tpc.Name + "]\\" + group.DisplayName;
+                                            var result = AddUserToGroup(username, groupname, tfsProjectCollection.Name);
+                                            if (result)
+                                                file.WriteLine("Added");
+                                            else
+                                                file.WriteLine("Cannot be added");
+                                        }
+
                                     }
-                                        
+                                    catch (Exception ex)
+                                    {
+                                        file.WriteLine(ex.InnerException);
+                                    }
 
-                                    i++;
 
-                                }
+
+
+                            }
                             }
                         }
                     }

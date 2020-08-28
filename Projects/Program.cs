@@ -24,7 +24,8 @@ namespace Projects
         static void Main(string[] args)
         {
             Console.WriteLine("Type your server Url without / at the end");
-            serverUrl = Console.ReadLine(); 
+            serverUrl = Console.ReadLine();
+
 
             Console.WriteLine("Type 1 to list collection members, 2 to add collection members");
             string input = Console.ReadLine();
@@ -105,6 +106,9 @@ namespace Projects
             VssCredentials creds = new VssClientCredentials();
             creds.Storage = new VssClientCredentialStorage();
 
+            // Connect to Azure DevOps Services
+            connection = new VssConnection(new Uri(serverUrl), creds);
+
             Uri configurationServerUri = new Uri(serverUrl);
             TfsConfigurationServer configurationServer = TfsConfigurationServerFactory.GetConfigurationServer(configurationServerUri);
             var tpcService = configurationServer.GetService<ITeamProjectCollectionService>();
@@ -164,6 +168,9 @@ namespace Projects
         {
             VssCredentials creds = new VssClientCredentials();
             creds.Storage = new VssClientCredentialStorage();
+
+            // Connect to Azure DevOps Services
+            connection = new VssConnection(new Uri(serverUrl), creds);
 
             Uri configurationServerUri = new Uri(serverUrl);
             TfsConfigurationServer configurationServer = TfsConfigurationServerFactory.GetConfigurationServer(configurationServerUri);

@@ -796,3 +796,4 @@ C:\TfsAdminAutomation\TFSAdminAutomation\Projects\obj\Debug\Projects.csproj.Core
 C:\TfsAdminAutomation\TFSAdminAutomation\Projects\obj\Debug\Projects.csproj.CopyComplete
 C:\TfsAdminAutomation\TFSAdminAutomation\Projects\obj\Debug\Projects.exe
 C:\TfsAdminAutomation\TFSAdminAutomation\Projects\obj\Debug\Projects.pdb
+C:\TfsAdminAutomation\TFSAdminAutomation\Projects\obj\Debug\Projects.csprojAssemblyReference.cache

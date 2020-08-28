@@ -205,9 +205,9 @@ namespace Projects
                                     members[i, 4] = group.DisplayName;
                                     file.WriteLine(tpc.Name + " # " + group.DisplayName + " # " + memberInfo.Domain + " # " + memberInfo.AccountName + " # " + memberInfo.DisplayName);
 
-                                    if(memberInfo.Domain.Equals("AAD"))
+                                    if(memberInfo.Domain.Equals("INTER"))
                                     {
-                                        string username = "AADTECH\\" + memberInfo.AccountName;
+                                        string username = "INTERTECH\\" + memberInfo.AccountName;
                                         string groupname = "[" + tpc.Name + "]\\" + group.DisplayName;
                                         var result = AddUserToGroup(username, groupname, tfsProjectCollection.Name);
                                         if (result)

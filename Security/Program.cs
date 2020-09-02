@@ -15,11 +15,15 @@ namespace Security
     class Program
     {
         public static string collectionUrl;
+        public static string serverUrl;
         public static VssConnection connection;
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Which collection?");
+            Console.WriteLine("Server URL");
+            serverUrl = Console.ReadLine();
+
+            Console.WriteLine("Collection URL");
             collectionUrl = Console.ReadLine();
 
             Console.WriteLine("Type 1 to list permissions, Type 2 to list and remove permissions");
@@ -175,12 +179,11 @@ namespace Security
 
         private static string GetNameFromIdentity(string identity)
         {
-            TfsConfigurationServer tcs = new TfsConfigurationServer(new Uri(collectionUrl));
+            TfsConfigurationServer tcs = new TfsConfigurationServer(new Uri(serverUrl));
 
             IIdentityManagementService ims = tcs.GetService<IIdentityManagementService>();
 
-            //TeamFoundationIdentity tfi = ims.ReadIdentity(IdentitySearchFactor.AccountName, "[TEAM FOUNDATION]\\Team Foundation Valid Users", MembershipQuery.Expanded, ReadIdentityOptions.None);
-            TeamFoundationIdentity tfi = ims.ReadIdentity(IdentitySearchFactor.AccountName, "[duygua]\\Project Collection Valid Users", MembershipQuery.Expanded, ReadIdentityOptions.None);
+            TeamFoundationIdentity tfi = ims.ReadIdentity(IdentitySearchFactor.AccountName, "[TEAM FOUNDATION]\\Team Foundation Valid Users", MembershipQuery.Expanded, ReadIdentityOptions.None);
 
             TeamFoundationIdentity[] ids = ims.ReadIdentities(tfi.Members, MembershipQuery.None, ReadIdentityOptions.None);
 

@@ -29,26 +29,30 @@ namespace Projects
 
             Console.WriteLine("Type 1 to list collection members, 2 to add collection members");
             string input = Console.ReadLine();
-            if(input.Equals("1"))
+            if (input.Equals("1"))
             {
                 GetCollectionMembers();
             }
-            else if(input.Equals("2"))
+            else if (input.Equals("2"))
             {
                 string fromDomain = "";
                 string toDomain = "";
                 string collectionName = "";
+                string groupName = "";
                 Console.WriteLine("Collection Name");
                 collectionName = Console.ReadLine();
+                Console.WriteLine("Group Name");
+                groupName = Console.ReadLine();
                 Console.WriteLine("From Domain");
                 fromDomain = Console.ReadLine();
                 Console.WriteLine("To Domain");
                 toDomain = Console.ReadLine();
-                AddCollectionMembers(collectionName,fromDomain, toDomain);
+
+                AddCollectionMembers(collectionName, groupName, fromDomain, toDomain);
             }
 
-            
-            
+
+
         }
         public static void GetAllTeamProjects_Library()
         {
@@ -67,11 +71,11 @@ namespace Projects
             {
                 try
                 {
-                    string projectName = project.Name.ToString();                
+                    string projectName = project.Name.ToString();
                 }
                 catch (Exception ex)
                 {
-                    
+
                 }
             }
         }
@@ -84,7 +88,7 @@ namespace Projects
             //use the httpclient
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(collectionUrl);  
+                client.BaseAddress = new Uri(collectionUrl);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
@@ -134,7 +138,7 @@ namespace Projects
 
                     var sec = tfsProjectCollection.GetService<IGroupSecurityService>();
 
-                    var appGroups = sec.ListApplicationGroups(null); 
+                    var appGroups = sec.ListApplicationGroups(null);
 
                     foreach (var group in appGroups)
                     {
@@ -167,24 +171,24 @@ namespace Projects
                                 }
                             }
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
-                            file.WriteLine("Could not read group members: "+group.AccountName);
+                            file.WriteLine("Could not read group members: " + group.AccountName);
                             file.WriteLine(ex.InnerException);
                             continue;
                         }
-                        
+
                     }
 
                 }
             }
-                
-            
+
+
 
 
         }
 
-        public static void AddCollectionMembers(string collectionName, string fromDomain, string toDomain)
+        public static void AddCollectionMembers(string collectionName, string groupName, string fromDomain, string toDomain)
         {
             VssCredentials creds = new VssClientCredentials();
             creds.Storage = new VssClientCredentialStorage();
@@ -211,10 +215,13 @@ namespace Projects
 
                     var sec = tfsProjectCollection.GetService<IGroupSecurityService>();
 
-                    var appGroups = sec.ListApplicationGroups(null); 
+                    var appGroups = sec.ListApplicationGroups(null);
 
                     foreach (var group in appGroups)
                     {
+                        if (!group.DisplayName.Equals(groupName))
+                            continue;
+
                         try
                         {
                             Identity[] groupMembers = sec.ReadIdentities(SearchFactor.Sid, new string[] { group.Sid }, QueryMembership.Expanded);
@@ -234,7 +241,7 @@ namespace Projects
 
                                             if (memberInfo.Domain.Equals(fromDomain))
                                             {
-                                                string username = toDomain+"\\" + memberInfo.AccountName;
+                                                string username = toDomain + "\\" + memberInfo.AccountName;
                                                 string groupname = "[" + tpc.Name + "]\\" + group.DisplayName;
                                                 var result = AddUserToGroup(username, groupname, tfsProjectCollection.Name);
                                                 if (result)
@@ -266,10 +273,10 @@ namespace Projects
             }
         }
 
-        
+
         public static void ListAllMembers()
         {
-            
+
             // Interactively ask the user for credentials, caching them so the user isn't constantly prompted
             VssCredentials creds = new VssClientCredentials();
             creds.Storage = new VssClientCredentialStorage();
@@ -302,7 +309,7 @@ namespace Projects
                 ProjectHttpClient projectClient = connection.GetClient<ProjectHttpClient>();
                 IEnumerable<TeamProjectReference> projects = projectClient.GetProjects(top: 10000).Result;
                 List<TeamProjectReference> teamProjects = new List<TeamProjectReference>(projects);
-                
+
                 var sec = tfsProjectCollection.GetService<IGroupSecurityService>();
 
 
@@ -333,7 +340,7 @@ namespace Projects
                                     members[i, 4] = group.DisplayName;
                                     Console.WriteLine(tfsProjectCollection.Name + " " + teamProject.Name + " " + memberInfo.AccountName + " " + memberInfo.DisplayName + " " + group.DisplayName);
                                     i++;
-                                    
+
                                 }
                             }
                         }

@@ -1192,7 +1192,6 @@ C:\My GitHub\TFSAdminAutomation\Projects\bin\Debug\ru\Microsoft.VisualStudio.Ser
 C:\My GitHub\TFSAdminAutomation\Projects\bin\Debug\tr\Microsoft.VisualStudio.Services.WebApi.resources.dll
 C:\My GitHub\TFSAdminAutomation\Projects\bin\Debug\zh-Hans\Microsoft.VisualStudio.Services.WebApi.resources.dll
 C:\My GitHub\TFSAdminAutomation\Projects\bin\Debug\zh-Hant\Microsoft.VisualStudio.Services.WebApi.resources.dll
-C:\My GitHub\TFSAdminAutomation\Projects\obj\Debug\Projects.csprojAssemblyReference.cache
 C:\My GitHub\TFSAdminAutomation\Projects\obj\Debug\Projects.csproj.CoreCompileInputs.cache
 C:\My GitHub\TFSAdminAutomation\Projects\obj\Debug\Projects.csproj.CopyComplete
 C:\My GitHub\TFSAdminAutomation\Projects\obj\Debug\Projects.exe

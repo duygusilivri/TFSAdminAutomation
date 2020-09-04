@@ -35,7 +35,16 @@ namespace Projects
             }
             else if(input.Equals("2"))
             {
-                AddCollectionMembers();
+                string fromDomain = "";
+                string toDomain = "";
+                string collectionName = "";
+                Console.WriteLine("Collection Name");
+                collectionName = Console.ReadLine();
+                Console.WriteLine("From Domain");
+                fromDomain = Console.ReadLine();
+                Console.WriteLine("To Domain");
+                toDomain = Console.ReadLine();
+                AddCollectionMembers(collectionName,fromDomain, toDomain);
             }
 
             
@@ -125,7 +134,7 @@ namespace Projects
 
                     var sec = tfsProjectCollection.GetService<IGroupSecurityService>();
 
-                    var appGroups = sec.ListApplicationGroups(null); ;
+                    var appGroups = sec.ListApplicationGroups(null); 
 
                     foreach (var group in appGroups)
                     {
@@ -175,8 +184,7 @@ namespace Projects
 
         }
 
-
-        public static void AddCollectionMembers()
+        public static void AddCollectionMembers(string collectionName, string fromDomain, string toDomain)
         {
             VssCredentials creds = new VssClientCredentials();
             creds.Storage = new VssClientCredentialStorage();
@@ -194,60 +202,71 @@ namespace Projects
                 file.WriteLine("Collection # Group # Domain # AccountName # DisplayName");
                 foreach (Microsoft.TeamFoundation.Framework.Client.TeamProjectCollection tpc in tpcService.GetCollections())
                 {
+                    if (!tpc.Name.Equals(collectionName))
+                        continue;
+
                     var tfsProjectCollection = new TfsTeamProjectCollection(new Uri(serverUrl + "/" + tpc.Name));
 
                     ProjectHttpClient projectClient = connection.GetClient<ProjectHttpClient>();
 
                     var sec = tfsProjectCollection.GetService<IGroupSecurityService>();
 
-                    var appGroups = sec.ListApplicationGroups(null); ;
+                    var appGroups = sec.ListApplicationGroups(null); 
 
                     foreach (var group in appGroups)
                     {
-                        Identity[] groupMembers = sec.ReadIdentities(SearchFactor.Sid, new string[] { group.Sid }, QueryMembership.Expanded);
-                        foreach (Identity member in groupMembers)
+                        try
                         {
-                            if (member.Members != null)
+                            Identity[] groupMembers = sec.ReadIdentities(SearchFactor.Sid, new string[] { group.Sid }, QueryMembership.Expanded);
+                            foreach (Identity member in groupMembers)
                             {
-                                foreach (string memberSid in member.Members)
+                                if (member.Members != null)
                                 {
-                                    try
-                                    { 
-                                        Identity memberInfo = sec.ReadIdentity(SearchFactor.Sid, memberSid, QueryMembership.Expanded);
-                                        if (memberInfo.Type != IdentityType.WindowsUser)
-                                            continue;
-
-                              
-                                        file.WriteLine(tpc.Name + " # " + group.DisplayName + " # " + memberInfo.Domain + " # " + memberInfo.AccountName + " # " + memberInfo.DisplayName);
-
-                                        if(memberInfo.Domain.Equals("INTER"))
-                                        {
-                                            string username = "INTERTECH\\" + memberInfo.AccountName;
-                                            string groupname = "[" + tpc.Name + "]\\" + group.DisplayName;
-                                            var result = AddUserToGroup(username, groupname, tfsProjectCollection.Name);
-                                            if (result)
-                                                file.WriteLine("Added");
-                                            else
-                                                file.WriteLine("Cannot be added");
-                                        }
-
-                                    }
-                                    catch (Exception ex)
+                                    foreach (string memberSid in member.Members)
                                     {
-                                        file.WriteLine(ex.InnerException);
+                                        try
+                                        {
+                                            Identity memberInfo = sec.ReadIdentity(SearchFactor.Sid, memberSid, QueryMembership.Expanded);
+                                            if (memberInfo.Type != IdentityType.WindowsUser)
+                                                continue;
+
+                                            file.WriteLine(tpc.Name + " # " + group.DisplayName + " # " + memberInfo.Domain + " # " + memberInfo.AccountName + " # " + memberInfo.DisplayName);
+
+                                            if (memberInfo.Domain.Equals(fromDomain))
+                                            {
+                                                string username = toDomain+"\\" + memberInfo.AccountName;
+                                                string groupname = "[" + tpc.Name + "]\\" + group.DisplayName;
+                                                var result = AddUserToGroup(username, groupname, tfsProjectCollection.Name);
+                                                if (result)
+                                                    file.WriteLine("Added");
+                                                else
+                                                    file.WriteLine("Cannot be added");
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            file.WriteLine("Could not read member info");
+                                            file.WriteLine(ex.InnerException);
+                                            continue;
+                                        }
                                     }
-
-
-
-
-                            }
+                                }
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            file.WriteLine("Could not read group members: " + group.AccountName);
+                            file.WriteLine(ex.InnerException);
+                            continue;
+                        }
+
                     }
 
                 }
             }
         }
+
+        
         public static void ListAllMembers()
         {
             

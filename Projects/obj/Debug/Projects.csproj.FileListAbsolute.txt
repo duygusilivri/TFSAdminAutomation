@@ -1196,3 +1196,5 @@ C:\My GitHub\TFSAdminAutomation\Projects\obj\Debug\Projects.csproj.CoreCompileIn
 C:\My GitHub\TFSAdminAutomation\Projects\obj\Debug\Projects.csproj.CopyComplete
 C:\My GitHub\TFSAdminAutomation\Projects\obj\Debug\Projects.exe
 C:\My GitHub\TFSAdminAutomation\Projects\obj\Debug\Projects.pdb
+C:\My GitHub\TFSAdminAutomation\Projects\obj\Debug\Projects.csprojAssemblyReference.cache
+C:\My GitHub\TFSAdminAutomation\Projects\obj\Debug\Projects.csproj.ResolveComReference.cache

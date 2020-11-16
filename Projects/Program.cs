@@ -10,8 +10,9 @@ using Newtonsoft.Json;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.Framework.Client;
 using Microsoft.TeamFoundation.Server;
-using Microsoft.TeamFoundation.VersionControl.Client;
 using Microsoft.TeamFoundation.Framework.Common;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
 
 namespace Projects
 {
@@ -23,18 +24,20 @@ namespace Projects
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Type your server Url without / at the end");
-            serverUrl = Console.ReadLine();
-
-
-            Console.WriteLine("Type 1 to list collection members, 2 to add collection members");
+            Console.WriteLine("Type 1 to list collection members, 2 to add collection members, 3 to add AAD Groups to Team Projects");
             string input = Console.ReadLine();
             if (input.Equals("1"))
             {
+                Console.WriteLine("Type your server Url without / at the end");
+                serverUrl = Console.ReadLine();
+
                 GetCollectionMembers();
             }
             else if (input.Equals("2"))
             {
+                Console.WriteLine("Type your server Url without / at the end");
+                serverUrl = Console.ReadLine();
+
                 string fromDomain = "";
                 string toDomain = "";
                 string collectionName = "";
@@ -49,6 +52,17 @@ namespace Projects
                 toDomain = Console.ReadLine();
 
                 AddCollectionMembers(collectionName, groupName, fromDomain, toDomain);
+            }
+            else if (input.Equals("3"))
+            {
+                string orgUrl = "";
+                Console.WriteLine("Organization Url");
+                orgUrl = Console.ReadLine();
+                string fileName = "";
+                Console.WriteLine("File Path:");
+                fileName = Console.ReadLine();
+
+                AddAADGroupToProjectsFromFile(orgUrl,fileName);
             }
 
 
@@ -273,6 +287,49 @@ namespace Projects
             }
         }
 
+        public static void AddAADGroupToProjectsFromFile(string OrgUrl, string fileName)
+        {
+            Excel.Application xlApp = new Excel.Application();
+            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(fileName);
+            Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+            Excel.Range xlRange = xlWorksheet.UsedRange;
+
+            int rowCount = xlRange.Rows.Count;
+            int colCount = xlRange.Columns.Count;
+
+            for (int i = 2; i <= rowCount; i++)
+            {
+                string teamProject = "";
+                string aadGroupName = "";
+                string customTpGroupName = "";
+                for (int j = 1; j <= colCount; j++)
+                {
+                    if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
+                    {
+                        if (j == 1)
+                            teamProject = xlRange.Cells[i, j].Value2.ToString();
+                        else if (j == 2)
+                            customTpGroupName = xlRange.Cells[i, j].Value2.ToString();
+                        else if (j == 3)
+                            aadGroupName = xlRange.Cells[i, j].Value2.ToString();
+                    }
+                }
+
+                AddAADGroupToTPCustomGroup(teamProject, customTpGroupName, aadGroupName, OrgUrl);
+            }
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
+            Marshal.ReleaseComObject(xlRange);
+            Marshal.ReleaseComObject(xlWorksheet);
+
+            xlWorkbook.Close();
+            Marshal.ReleaseComObject(xlWorkbook);
+
+            xlApp.Quit();
+            Marshal.ReleaseComObject(xlApp);   
+        }
 
         public static void ListAllMembers()
         {
@@ -421,6 +478,43 @@ namespace Projects
             }
 
 
+        }
+
+        public static bool AddAADGroupToTPCustomGroup(string teamProject, string tpCustomGroupName, string aadGroupName, string organizationUrl)
+        {
+            VssCredentials creds = new VssClientCredentials();
+            creds.Storage = new VssClientCredentialStorage();
+
+            var tpc = new TfsTeamProjectCollection(new Uri(organizationUrl), creds); 
+            tpc.Connect(Microsoft.TeamFoundation.Framework.Common.ConnectOptions.IncludeServices);
+
+            IIdentityManagementService ims = tpc.GetService<IIdentityManagementService>();
+
+            string tpCustomGroupNameFull = "[" + teamProject + "]" + "\\" + tpCustomGroupName;
+            string aadGroupNameFull = "[TEAM FOUNDATION]" + "\\" + aadGroupName;  //for AAD Groups
+
+            try
+            {
+                var tfsGroupIdentity = ims.ReadIdentity(IdentitySearchFactor.AccountName,
+                                                    tpCustomGroupNameFull,
+                                                    MembershipQuery.None,
+                                                    ReadIdentityOptions.IncludeReadFromSource);
+
+                var aadGroupIdentity = ims.ReadIdentity(IdentitySearchFactor.AccountName,
+                                                        aadGroupNameFull,
+                                                        MembershipQuery.None,
+                                                        ReadIdentityOptions.IncludeReadFromSource);
+
+                ims.AddMemberToApplicationGroup(tfsGroupIdentity.Descriptor, aadGroupIdentity.Descriptor);
+
+                Console.WriteLine("Group added: " + aadGroupName + " to " + tpCustomGroupName);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Group cannot be added: " + aadGroupName + ", " + tpCustomGroupName);
+                return false;
+            }
         }
 
         public class RootObject

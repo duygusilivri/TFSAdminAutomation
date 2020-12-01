@@ -40,7 +40,7 @@ namespace Builds
             string choice;
             do
             {
-                Console.WriteLine("\n\nType\n4 to update all build retention policies\n0 to Exit");
+                Console.WriteLine("\n\nType\n5 to update build completion triggers\n0 to Exit");
                 choice = Console.ReadLine();
 
                 switch (choice)
@@ -73,6 +73,13 @@ namespace Builds
                             Console.WriteLine("Which collection?");
                             collectionUrl = Console.ReadLine();
                             UpdateAllBuildDefinitionRetention();
+                            break;
+                        }
+                    case "5":
+                        {
+                            Console.WriteLine("Which collection?");
+                            collectionUrl = Console.ReadLine();
+                            UpdateBuildDefinitionTrigger("Parts Unlimited", 32, 37);
                             break;
                         }
                 }
@@ -123,6 +130,27 @@ namespace Builds
 
 
             await bhc.UpdateDefinitionAsync(buildDefTemplate, teamProject);
+        }
+
+        public async static void UpdateBuildDefinitionTrigger(string teamProject, int mainBuildId, int buildTriggerId)
+        {
+            var tpc = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(collectionUrl));
+            var bhc = tpc.GetClient<BuildHttpClient>();
+
+
+            BuildDefinition buildDef = (await bhc.GetDefinitionAsync(teamProject, mainBuildId));
+
+            BuildDefinition buildDefTrigger = (await bhc.GetDefinitionAsync(teamProject, buildTriggerId));
+            BuildCompletionTrigger buildTriggerToAdd = new BuildCompletionTrigger();
+            List<string> branchFilters = new List<string>();
+            branchFilters.Add("+refs/heads/master");
+            buildTriggerToAdd.Definition = buildDefTrigger;
+            buildTriggerToAdd.BranchFilters = branchFilters;
+            buildTriggerToAdd.RequiresSuccessfulBuild = true;
+
+            buildDef.Triggers.Add(buildTriggerToAdd);
+
+            await bhc.UpdateDefinitionAsync(buildDef, teamProject);
         }
 
         public async static void UpdateAllBuildDefinitionRetention()

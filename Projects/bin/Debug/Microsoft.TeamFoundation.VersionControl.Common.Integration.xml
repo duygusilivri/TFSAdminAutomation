@@ -689,7 +689,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.VersionControlIntegrationResources.VersionControlNotRegistered">
             <summary>
-            TF10109: Source control cannot locate the source control service on Team Foundation Server {0}. Check that you have a network connection and that your Team Foundation Server is available. If the problem persists, contact your Team Foundation Server administrator.
+            TF10109: Source control cannot locate the source control service on Azure DevOps Server {0}. Check that you have a network connection and that your Azure DevOps Server is available. If the problem persists, contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.VersionControlIntegrationResources.ChangesetFormat">
@@ -764,7 +764,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.VersionControlIntegrationResources.TeamFoundationServerNameMissing">
             <summary>
-            A Team Foundation server name must be supplied.
+            An Azure DevOps Server name must be supplied.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.VersionControlIntegrationResources.TeamProjectListSeparator">

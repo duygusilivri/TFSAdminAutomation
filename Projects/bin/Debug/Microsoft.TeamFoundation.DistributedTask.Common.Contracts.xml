@@ -34,6 +34,16 @@
             Gets or sets the result template.
             </summary>
         </member>
+        <member name="P:Microsoft.TeamFoundation.DistributedTask.Common.Contracts.DataSourceBindingBase.RequestVerb">
+            <summary>
+            Gets or sets http request verb
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.DistributedTask.Common.Contracts.DataSourceBindingBase.RequestContent">
+            <summary>
+            Gets or sets http request body
+            </summary>
+        </member>
         <member name="P:Microsoft.TeamFoundation.DistributedTask.Common.Contracts.DataSourceBindingBase.EndpointUrl">
             <summary>
             Gets or sets the url of the service endpoint.
@@ -42,6 +52,21 @@
         <member name="P:Microsoft.TeamFoundation.DistributedTask.Common.Contracts.DataSourceBindingBase.ResultSelector">
             <summary>
             Gets or sets the result selector.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.DistributedTask.Common.Contracts.DataSourceBindingBase.CallbackContextTemplate">
+            <summary>
+            Pagination format supported by this data source(ContinuationToken/SkipTop).
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.DistributedTask.Common.Contracts.DataSourceBindingBase.CallbackRequiredTemplate">
+            <summary>
+            Subsequent calls needed?
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.DistributedTask.Common.Contracts.DataSourceBindingBase.InitialContextTemplate">
+            <summary>
+            Defines the initial value of the query params
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.DistributedTask.Common.Contracts.DataSourceBindingBase.Headers">

@@ -80,6 +80,11 @@
             List of requirements on the slice that should be met for it to be assigned
             </summary>
         </member>
+        <member name="P:Microsoft.TeamFoundation.Test.WebApi.TestAutomationRunSlice.AssignmentOrder">
+            <summary>
+            Order to assign slices to agents, if set
+            </summary>
+        </member>
         <member name="T:Microsoft.TeamFoundation.Test.WebApi.TestRunInformation">
             <summary>
             Captures the Automation TestRun related information needed by TestAgent to execute
@@ -316,6 +321,14 @@
             <param name="userState"></param>
             <param name="cancellationToken">The cancellation token to cancel operation.</param>
         </member>
+        <member name="M:Microsoft.TeamFoundation.Test.WebApi.ITestHttpClient.GetTestExecutionControlOptionsAsync(System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            [Preview API] http://(tfsserver)/tfs/DefaultCollection/_apis/test/TestExecutionControlOptions/
+            </summary>
+            <param name="envUrl"></param>
+            <param name="userState"></param>
+            <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        </member>
         <member name="P:Microsoft.TeamFoundation.Test.WebApi.ITestHttpClient.HttpClient">
             <summary>
             Handle to HttpClient
@@ -386,6 +399,14 @@
             [Preview API] http://(tfsserver):8080/tfs/DefaultCollection/_apis/test/TestExecutionConfiguration/ Request: Json of TestRun
             </summary>
             <param name="testRunExecutionConfiguration"></param>
+            <param name="userState"></param>
+            <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Test.WebApi.TestHttpClient.GetTestExecutionControlOptionsAsync(System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            [Preview API] http://(tfsserver)/tfs/DefaultCollection/_apis/test/TestExecutionControlOptions/
+            </summary>
+            <param name="envUrl"></param>
             <param name="userState"></param>
             <param name="cancellationToken">The cancellation token to cancel operation.</param>
         </member>

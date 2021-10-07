@@ -924,6 +924,26 @@
             This class encapsulates the list of well known providers and helper classes/methods for them.
             </summary>
         </member>
+        <member name="M:Microsoft.TeamFoundation.Build.Common.BuildSourceProviders.GitProperties.ParseBranchSpec(System.String,System.Boolean@,System.String@)">
+            <summary>
+            This is old matching code and exists for API compatibility as part of the client.
+            For branch filters, use <c>IsRepositoryBranchIncluded</c> instead.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Build.Common.BuildSourceProviders.GitProperties.ParseBranchSpec(System.String,System.Boolean@,System.String@,System.Boolean@,System.Boolean)">
+            <summary>
+            This is old matching code and exists for API compatibility as part of the client.
+            For branch filters, use <c>IsRepositoryBranchIncluded</c> instead.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Build.Common.BuildSourceProviders.GitProperties.IsRepositoryBranchIncluded(System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Match <c>branch</c> against a list of include and exclude filters.
+            Filters may include * and ? wildcards in any position.
+            If an include and exclude filter both match, exclude filters always take precedence.
+            Note: This can also include tags
+            </summary>
+        </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildSourceProviders.GitProperties.BranchToRefName(System.String)">
             <summary>
             Add refs/heads/ to the branch name if it doesn't already start with refs/.
@@ -1692,19 +1712,19 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.BuildReasonNotSupported(System.Object,System.Object,System.Object)">
             <summary>
-            TF209039: The build process template for the build definition does not support the reason {0} for which this build was queued.  The supported build reasons for the build process template include {1}.  If you believe that the build process template does support the build reason, you can update the value of the SupportedReasons property in file {2}.
+            TF209039: The build process template for the build pipeline does not support the reason {0} for which this build was queued.  The supported build reasons for the build process template include {1}.  If you believe that the build process template does support the build reason, you can update the value of the SupportedReasons property in file {2}.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.TemplateVersionNotSupported(System.Object,System.Object)">
              <summary>
              0 is the version string in the template. 1 is the assembly version.
             
-             The build controller used for this build does not support the version of the template file used by the build definition. The version of the template file is {0}. The maximum supported version for this build controller is {1}. This build controller must be upgraded to build this version of the template file.
+             The build controller used for this build does not support the version of the template file used by the build pipeline. The version of the template file is {0}. The maximum supported version for this build controller is {1}. This build controller must be upgraded to build this version of the template file.
              </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.BuildRequestFromInvalidMachine(System.Object)">
             <summary>
-            TF42053: The build machine is not configured to build for server {0}. The build machine is configured for one Team Foundation Server only. To change the Team Foundation Server for the build machine, update the AllowedTeamServer key in the file TFSBuildService.exe.config and restart the service.
+            TF42053: The build machine is not configured to build for server {0}. The build machine is configured for one Azure DevOps Server only. To change the Azure DevOps Server for the build machine, update the AllowedTeamServer key in the file TFSBuildService.exe.config and restart the service.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.BuildStepNotFoundException(System.Object,System.Object)">
@@ -1724,12 +1744,12 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.BuildTagGroup_Definition">
             <summary>
-            Definition
+            Pipeline
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.BuildTypeNotFound(System.Object,System.Object)">
             <summary>
-            TF41001: Team project {1} does not have a build definition {0}.
+            TF41001: Team project {1} does not have a build pipeline {0}.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.CannotCreateDropLocation(System.Object,System.Object)">
@@ -1739,7 +1759,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.CannotStartBuildForActiveDefinition(System.Object,System.Object)">
             <summary>
-            TF209057: You cannot perform the &quot;Start Now&quot; action on queued build {0} because its build definition ({1}) is not paused or disabled.
+            TF209057: You cannot perform the &quot;Start Now&quot; action on queued build {0} because its build pipeline ({1}) is not paused or disabled.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.CannotStartBuildForUnavailableController(System.Object,System.Object)">
@@ -1749,32 +1769,32 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.CannotStartBuildControllerOverloaded(System.Object,System.Object)">
             <summary>
-            TF209059: You cannot perform the &quot;Start Now&quot; action on queued build {0} because its build controller ({1}) is running its specified maximum number of concurrently running builds.
+            TF209059: You cannot perform the &quot;Start Now&quot; action on queued build {0} because its build controller ({1}) is running its specified maximum number of parallel builds.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.CheckinComment">
             <summary>
-            Created new build definition
+            Created new build pipeline
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.CheckinPermissionDenied(System.Object,System.Object)">
             <summary>
-            TF209012: Access denied. You need the {0} permission in {1} to create a build definition.     For more information, contact your Team Foundation Server administrator.
+            TF209012: Access denied. You need the {0} permission in {1} to create a build pipeline.     For more information, contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.CheckinPluginInitializationException(System.Object,System.Object)">
             <summary>
-            TF217001: {0}: Team Foundation Build encountered this error while initializing {1}.
+            TF217001: {0}: Azure DevOps Build encountered this error while initializing {1}.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.CheckinPluginSubscriptionException(System.Object,System.Object)">
             <summary>
-            TF217002: {0}: Team Foundation Build encountered this error while establishing subscriptions for {1}.
+            TF217002: {0}: Azure DevOps Build encountered this error while establishing subscriptions for {1}.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ConnectionLostError">
             <summary>
-            TF42017: Unable to create the build definition specified because the connection to the server timed out. Wait for few minutes and try again. If the problem persists, contact your network administrator.
+            TF42017: Unable to create the build pipeline specified because the connection to the server timed out. Wait for few minutes and try again. If the problem persists, contact your network administrator.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.DefinitionQueueStatus_Disabled">
@@ -1874,7 +1894,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.DuplicateBuildType(System.Object)">
             <summary>
-            TF42013: The build definition {0} already exists.
+            TF42013: The build pipeline {0} already exists.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.EDIT_BUILD_STATUS">
@@ -1899,17 +1919,17 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.Error_TFSFailure">
             <summary>
-            TF209015: Failed to retrieve data from the server. Verify that Team Foundation server is accessible via the network and try again.
+            TF209015: Failed to retrieve data from the server. Verify that Azure DevOps Server is accessible via the network and try again.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.Error_UnauthorizedAccess">
             <summary>
-            TF209016: Access denied. You are not authorized to perform this action.     For more information, contact the Team Foundation Server administrator.
+            TF209016: Access denied. You are not authorized to perform this action.     For more information, contact the Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ErrorInCheckInTag">
             <summary>
-            TF42025: The wizard could not check the build definition files into source control. Verify the network connection and try again.
+            TF42025: The wizard could not check the build pipeline files into source control. Verify the network connection and try again.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ErrorInGettingSolutionNamesTag(System.Object)">
@@ -1924,7 +1944,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ErrorInSyncingConfigFilesTag">
             <summary>
-            TF42030: Failed to synchronize build definition files. Verify the network connection and try again.
+            TF42030: Failed to synchronize build pipeline files. Verify the network connection and try again.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ErrorOpeningWizardTag(System.Object)">
@@ -1974,27 +1994,27 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.GatedCheckinSingleDefinition(System.Object,System.Object)">
             <summary>
-            Your check-in has been placed into shelveset {0} and submitted for validation by build definition {1}.
+            Your check-in has been placed into shelveset {0} and submitted for validation by build pipeline {1}.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.GatedCheckinSingleDefinitionFromShelveset(System.Object)">
             <summary>
-            Your shelveset has been submitted for validation by build definition {0}.
+            Your shelveset has been submitted for validation by build pipeline {0}.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.GatedCheckinMultipleDefinition(System.Object)">
             <summary>
-            Your check-in could not be completed because it affects the following gated build definitions.  {0}To complete your check-in you will need to shelve your changes and queue a build of that shelveset.
+            Your check-in could not be completed because it affects the following gated build pipelines.  {0}To complete your check-in you will need to shelve your changes and queue a build of that shelveset.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.GatedCheckinMultipleDefinitionWithShelveset(System.Object,System.Object)">
             <summary>
-            Your check-in could not be completed because it affects the following gated build definitions.  {0}To complete your check-in you will need to queue a build of the shelveset {1}.
+            Your check-in could not be completed because it affects the following gated build pipelines.  {0}To complete your check-in you will need to queue a build of the shelveset {1}.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.GatedCheckinOverrideDenied(System.Object,System.Object,System.Object)">
             <summary>
-            Access Denied: User {0} needs {1} permission for the following build definition(s).  {2}
+            Access Denied: User {0} needs {1} permission for the following build pipeline(s).  {2}
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.GENERIC_READ">
@@ -2049,7 +2069,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidBuildRequest(System.Object)">
             <summary>
-            TF42057: The Team Foundation Server {0} denies sending a build request.
+            TF42057: The Azure DevOps Server {0} denies sending a build request.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidBuildDirectoryForDrive(System.Object)">
@@ -2079,22 +2099,22 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidDefinitionNameInvalidCharacters(System.Object)">
             <summary>
-            TF215075: The definition name {0} contains characters that you cannot use. Characters that you cannot use include &apos;&lt;&apos;, &apos;&gt;&apos;, &apos;|&apos;, &apos;*&apos;, &apos;:&apos;, &apos;\&apos;, &apos;/&apos;, &apos;&quot;&apos;, &apos;?&apos;, &apos;@&apos;, &apos;$&apos; and &apos;=&apos;.
+            TF215075: The pipeline name {0} contains characters that you cannot use. Characters that you cannot use include &apos;&lt;&apos;, &apos;&gt;&apos;, &apos;|&apos;, &apos;*&apos;, &apos;:&apos;, &apos;\&apos;, &apos;/&apos;, &apos;&quot;&apos;, &apos;?&apos;, &apos;@&apos;, &apos;$&apos; and &apos;=&apos;.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidDefinitionNameTooLong(System.Object,System.Object)">
             <summary>
-            TF209033: The build definition name {0} is too long. The maximum length for a build definition name is {1} characters.
+            TF209033: The build pipeline name {0} is too long. The maximum length for a build pipeline name is {1} characters.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidDefinitionNameReservedName(System.Object)">
             <summary>
-            TF209034: The build definition name {0} is not valid. Build definition names cannot be NTFS reserved names.
+            TF209034: The build pipeline name {0} is not valid. Build pipeline names cannot be NTFS reserved names.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidDefinitionNameInvalidTermination(System.Object)">
             <summary>
-            TF209035: The build definition name {0} is not valid. Build definition names cannot end in the following characters: &apos; &apos;, &apos;.&apos;.
+            TF209035: The build pipeline name {0} is not valid. Build pipeline names cannot end in the following characters: &apos; &apos;, &apos;.&apos;.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidDropDir(System.Object)">
@@ -2178,7 +2198,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ServerPathNotSupported(System.Object)">
             <summary>
-            TF400641: The path &apos;{0}&apos; cannot be used because the Team Foundation Server you are connected to does not support source control drop locations; you must use a UNC path instead.
+            TF400641: The path &apos;{0}&apos; cannot be used because the Azure DevOps Server you are connected to does not support source control drop locations; you must use a UNC path instead.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidUriNotAbsolute(System.Object)">
@@ -2193,17 +2213,17 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidBuildType(System.Object,System.Object)">
             <summary>
-            TF42006: The build service could not get the project file for build definition {0}. Ensure the project file exists and the build service account {1} is a member of the Build Services group for the team project.
+            TF42006: The build service could not get the project file for build pipeline {0}. Ensure the project file exists and the build service account {1} is a member of the Build Services group for the team project.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidBuildTypeFile(System.Object,System.Object)">
             <summary>
-            TF42075: The build definition file TfsBuild.proj for build definition {0} could not be loaded. Error: {1}
+            TF42075: The build pipeline file TfsBuild.proj for build pipeline {0} could not be loaded. Error: {1}
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidBuildTypeFileFormat(System.Object)">
             <summary>
-            TF42015: The build definition file TfsBuild.proj for build definition {0} could not be read. The format of the file is invalid, or the build service account does not have permissions to read the file.
+            TF42015: The build pipeline file TfsBuild.proj for build pipeline {0} could not be read. The format of the file is invalid, or the build service account does not have permissions to read the file.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidInput(System.Object)">
@@ -2248,7 +2268,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.MissingDefinitionName">
             <summary>
-            TF215058: You must specify a name for the build definition.
+            TF215058: You must specify a name for the build pipeline.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.MissingBuildDirectory">
@@ -2268,7 +2288,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.MissingBuildType">
             <summary>
-            TF209006: You must specify a build definition.
+            TF209006: You must specify a build pipeline.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.MissingServiceHostName">
@@ -2278,7 +2298,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.PermissionDenied(System.Object)">
             <summary>
-            TF209022: Access denied. You need the {0} permission to perform this action.    For more information, contact your Team Foundation Server administrator.
+            TF209022: Access denied. You need the {0} permission to perform this action.    For more information, contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.PlatformFlavorFormatText(System.Object,System.Object)">
@@ -2293,12 +2313,12 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ProcessTemplateDeleted">
             <summary>
-            TF215100: The build definition refers to a process template that no longer exists.
+            TF215100: The build pipeline refers to a process template that no longer exists.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ProcessTemplateDeletedWithServerPath(System.Object)">
             <summary>
-            TF215101: The build definition refers to a process template at &apos;{0}&apos;, which no longer exists.
+            TF215101: The build pipeline refers to a process template at &apos;{0}&apos;, which no longer exists.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ColumnRetentionPolicyHeaderText">
@@ -2413,7 +2433,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ServiceAccountUnauthorized(System.Object,System.Object)">
             <summary>
-            TF209009: The account {1} is not authorized to communicate with Team Foundation Server {0}. Verify that the account is a member of the Build Services security group for the appropriate team project on the Team Foundation Server and that the account&apos;s password has not expired.
+            TF209009: The account {1} is not authorized to communicate with Azure DevOps Server {0}. Verify that the account is a member of the Build Services security group for the appropriate team project on the Azure DevOps Server and that the account&apos;s password has not expired.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.SyncState">
@@ -2438,7 +2458,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.SourceControlDoesNotExist">
             <summary>
-            TF209023: Either source control has not been configured for this team project or you do not have permission to access it. Configure source control and try again or contact your Team Foundation Server administrator to obtain the required permissions.
+            TF209023: Either source control has not been configured for this team project or you do not have permission to access it. Configure source control and try again or contact your Azure DevOps Server administrator to obtain the required permissions.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.START_BUILD">
@@ -2593,7 +2613,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.UnexpectedTFServerException(System.Object,System.Object)">
             <summary>
-            TF209026: An unexpected error occurred on the Team Foundation server {0}: {1}.
+            TF209026: An unexpected error occurred on the Azure DevOps Server {0}: {1}.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.UPDATE_BUILD">
@@ -2603,7 +2623,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.VSNotFound">
             <summary>
-            TF209027: Failed to locate all the required Team Foundation Build components. Reinstalling the Team Foundation Build application may fix this problem.
+            TF209027: Failed to locate all the required Azure DevOps Build components. Reinstalling the Azure DevOps Build application may fix this problem.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ResponseFileReadException(System.Object)">
@@ -2628,7 +2648,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.DeleteBuildDefinitionPermission">
             <summary>
-            Delete build definition
+            Delete build pipeline
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.DeleteBuildsPermission">
@@ -2643,7 +2663,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.EditBuildDefinitionPermission">
             <summary>
-            Edit build definition
+            Edit build pipeline
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.EditBuildQualityPermission">
@@ -2693,7 +2713,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ViewBuildDefinitionPermission">
             <summary>
-            View build definition
+            View build pipeline
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ViewBuildResourcesPermission">
@@ -2750,7 +2770,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.CannotStartBuildGatedInProgress(System.Object,System.Object)">
             <summary>
-            TF209059: You cannot perform the &quot;Start Now&quot; action on queued build {0} because its build controller ({1}) is already running a gated build for the same build definition.
+            TF209059: You cannot perform the &quot;Start Now&quot; action on queued build {0} because its build controller ({1}) is already running a gated build for the same build pipeline.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.AdministerBuildPermissionsPermission">
@@ -2774,7 +2794,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.BuildContainerPathNotSupported(System.Object)">
             <summary>
-            TF400955: The path &apos;{0}&apos; cannot be used because the Team Foundation Server you are connected to does not support file container drop locations; you must use a UNC path instead.
+            TF400955: The path &apos;{0}&apos; cannot be used because the Azure DevOps Server you are connected to does not support file container drop locations; you must use a UNC path instead.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.InvalidUriToolId(System.Object,System.Object)">
@@ -2790,6 +2810,11 @@
         <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.BuildParameterElementNotFoundException(System.Object)">
             <summary>
             TF401071: Could not find the element within the process parameter. Details:{0}
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Build.Common.BuildTypeResource.ManagePipelinePoliciesPermission">
+            <summary>
+            Manage pipeline policies
             </summary>
         </member>
     </members>

@@ -113,6 +113,12 @@
         <member name="T:Microsoft.TeamFoundation.TestManagement.Common.WitCategoryRefName">
             <summary>
             Specifies the constants for WIT category names.
+            Adding AllWorkItemsCategory for getting all workitems
+            </summary>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.TestManagement.Common.WitCategoryName">
+            <summary>
+            Specifies the constants for WIT category names.
             </summary>
         </member>
         <member name="T:Microsoft.TeamFoundation.TestManagement.Server.Phase">

@@ -2241,7 +2241,7 @@
         <member name="P:Microsoft.TeamFoundation.TestManagement.Client.CloneOperationInformation.State">
             <summary>
             Current state of the operation.
-            When State reaches Suceeded or Failed, the operation is complete
+            When State reaches Succeeded or Failed, the operation is complete
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.TestManagement.Client.CloneOperationInformation.TargetPlanId">
@@ -10314,7 +10314,7 @@
         </member>
         <member name="P:Microsoft.TeamFoundation.TestManagement.Client.Resources.RegistrationError">
             <summary>
-              Looks up a localized string similar to An error occurred while trying to locate the Team Foundation registration entry for {0}. For more information, contact the Team Foundation Server administrator..
+              Looks up a localized string similar to An error occurred while trying to locate the Azure DevOps registration entry for {0}. For more information, contact the Azure DevOps Server administrator..
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.TestManagement.Client.Resources.ReplaceParameterWithEmptyTextErrorMessage">
@@ -10741,7 +10741,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.TestManagement.Client.TestResultState.Completed">
             <summary>
-            Test has completed, but there is no quantative measure of completeness.
+            Test has completed, but there is no quantitative measure of completeness.
             This may apply to load tests.
             </summary>
         </member>
@@ -10858,7 +10858,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.TestManagement.Client.TestRunState.Aborted">
             <summary>
-            Run is stopped and remaing tests have been aborted
+            Run is stopped and remaining tests have been aborted
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.TestManagement.Client.TestRunState.Waiting">
@@ -11073,6 +11073,12 @@
             <summary>
             These test run would require DTL environment. 
             These could be either of automated or manual test run.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.TestManagement.Client.TestRunType.NoConfigRun">
+            <summary>
+            These test run may or may not have published test results but it will have summary like total test, passed test, failed test etc.
+            These are automated tests.
             </summary>
         </member>
         <member name="T:Microsoft.TeamFoundation.TestManagement.Client.TestRunAbortOptions">

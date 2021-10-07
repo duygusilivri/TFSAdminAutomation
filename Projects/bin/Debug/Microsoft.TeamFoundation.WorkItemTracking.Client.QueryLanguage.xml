@@ -372,6 +372,16 @@
              Expecting a number after &apos;{0}&apos;
              </summary>
         </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Wiql.ResourceStrings.ExpectingEmptyAfterIsNot">
+            <summary>
+            Expecting &apos;empty&apos; after &apos;is not&apos;
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Wiql.ResourceStrings.ExpectingEmptyNotEmptyAfterIs">
+            <summary>
+            Expecting either &apos;empty&apos; or &apos;not empty&apos; after &apos;is&apos;
+            </summary>
+        </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Wiql.ResourceStrings.TreeQueryNeedsOneLinkType">
             <summary>
             Tree query must contain one and only one link type.
@@ -430,6 +440,16 @@
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Wiql.ResourceStrings.InvalidFieldTypeForCondition">
             <summary>
             TF212025: You cannot compare long text, HTML, or history fields to other fields in the WHERE clause of a work item query.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Wiql.ResourceStrings.MacroUndefined">
+            <summary>
+            The macro &apos;@{0}&apos; is not defined.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Wiql.ResourceStrings.ProjectMacroUndefined">
+            <summary>
+            Queries with an @project clause can only be executed on the project specific WIQL endpoint.
             </summary>
         </member>
         <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.NodeParameters">

@@ -89,6 +89,21 @@
             Client proxy for the <em>dashboard</em> REST interface.
             </summary>
         </member>
+        <member name="T:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardCompatHttpClientBase">
+            <summary>
+            This class contains overloads of methods that were removed from the auto-generated client
+            due to adding parameters. We use extra overloads to ensure that whatever binary signature
+            a client used before will map to one of these prototypes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardCompatHttpClientBase.GetDashboardsAsync(Microsoft.TeamFoundation.Core.WebApi.Types.TeamContext,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            [Preview API] Get a list of dashboards.
+            </summary>
+            <param name="teamContext">The team context for the operation</param>
+            <param name="userState"></param>
+            <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        </member>
         <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardSecuredObject.SetSecuredObject(Microsoft.VisualStudio.Services.WebApi.ISecuredObject)">
             <summary>
             Operation to populate SecuredObject Info on object and all children with same security state.
@@ -238,7 +253,7 @@
         </member>
         <member name="P:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardResources.ErrorWidgetSizeNotSupported">
             <summary>
-              Looks up a localized string similar to VS402508: A widget uses a size ({0} x {1}) which is not supported..
+              Looks up a localized string similar to VS402508: The specified widget uses a size ({0} x {1}) which is not supported for that widget type.
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardResources.ErrorWidgetServiceUnavailable">
@@ -390,9 +405,9 @@
             <param name="userState"></param>
             <param name="cancellationToken">The cancellation token to cancel operation.</param>
         </member>
-        <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardHttpClientBase.GetDashboardsAsync(Microsoft.TeamFoundation.Core.WebApi.Types.TeamContext,System.Object,System.Threading.CancellationToken)">
+        <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardHttpClientBase.GetDashboardsByProjectAsync(Microsoft.TeamFoundation.Core.WebApi.Types.TeamContext,System.Object,System.Threading.CancellationToken)">
             <summary>
-            [Preview API] Get a list of dashboards.
+            [Preview API] Get a list of dashboards under a project.
             </summary>
             <param name="teamContext">The team context for the operation</param>
             <param name="userState"></param>
@@ -400,7 +415,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardHttpClientBase.ReplaceDashboardAsync(Microsoft.TeamFoundation.Dashboards.WebApi.Dashboard,Microsoft.TeamFoundation.Core.WebApi.Types.TeamContext,System.Guid,System.Object,System.Threading.CancellationToken)">
             <summary>
-            [Preview API] Replace configuration for the specified dashboard.
+            [Preview API] Replace configuration for the specified dashboard. Replaces Widget list on Dashboard, only if property is supplied.
             </summary>
             <param name="dashboard">The Configuration of the dashboard to replace.</param>
             <param name="teamContext">The team context for the operation</param>
@@ -509,9 +524,45 @@
             <param name="userState"></param>
             <param name="cancellationToken">The cancellation token to cancel operation.</param>
         </member>
+        <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardHttpClientBase.GetWidgetMetadataAsync(System.String,System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            [Preview API] Get the widget metadata satisfying the specified contribution ID.
+            </summary>
+            <param name="project">Project ID or project name</param>
+            <param name="contributionId">The ID of Contribution for the Widget</param>
+            <param name="userState"></param>
+            <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardHttpClientBase.GetWidgetMetadataAsync(System.Guid,System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            [Preview API] Get the widget metadata satisfying the specified contribution ID.
+            </summary>
+            <param name="project">Project ID</param>
+            <param name="contributionId">The ID of Contribution for the Widget</param>
+            <param name="userState"></param>
+            <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardHttpClientBase.GetWidgetTypesAsync(System.String,Microsoft.TeamFoundation.Dashboards.WebApi.WidgetScope,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            [Preview API] Get all available widget metadata in alphabetical order, including widgets marked with isVisibleFromCatalog == false.
+            </summary>
+            <param name="project">Project ID or project name</param>
+            <param name="scope"></param>
+            <param name="userState"></param>
+            <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardHttpClientBase.GetWidgetTypesAsync(System.Guid,Microsoft.TeamFoundation.Dashboards.WebApi.WidgetScope,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            [Preview API] Get all available widget metadata in alphabetical order, including widgets marked with isVisibleFromCatalog == false.
+            </summary>
+            <param name="project">Project ID</param>
+            <param name="scope"></param>
+            <param name="userState"></param>
+            <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        </member>
         <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardHttpClientBase.GetWidgetTypesAsync(Microsoft.TeamFoundation.Dashboards.WebApi.WidgetScope,System.Object,System.Threading.CancellationToken)">
             <summary>
-            [Preview API] Get all available widget metadata in alphabetical order.
+            [Preview API] Get all available widget metadata in alphabetical order, including widgets marked with isVisibleFromCatalog == false.
             </summary>
             <param name="scope"></param>
             <param name="userState"></param>
@@ -558,9 +609,23 @@
             The set of Widgets on the dashboard.
             </summary>
         </member>
+        <member name="P:Microsoft.TeamFoundation.Dashboards.WebApi.Dashboard.GroupId">
+            <summary>
+            ID of the group for a dashboard.
+            For team-scoped dashboards, this is the unique identifier for the team associated with the dashboard.
+            For project-scoped dashboards this property is empty.
+            </summary>
+        </member>
         <member name="P:Microsoft.TeamFoundation.Dashboards.WebApi.Dashboard.OwnerId">
             <summary>
-            ID of the Owner for a dashboard. For any legacy dashboards, this would be the unique identifier for the team associated with the dashboard. 
+            ID of the owner for a dashboard.
+            For team-scoped dashboards, this is the unique identifier for the team associated with the dashboard.
+            For project-scoped dashboards, this is the unique identifier for the user identity associated with the dashboard.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.Dashboards.WebApi.Dashboard.DashboardScope">
+            <summary>
+            Entity to which the dashboard is scoped.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.Dashboard.IsNew">
@@ -592,7 +657,7 @@
         </member>
         <member name="T:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardGroupEntry">
             <summary>
-            Dashboard group entry, wraping around Dashboard (needed?)
+            Dashboard group entry, wrapping around Dashboard (needed?)
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "T:Microsoft.TeamFoundation.Dashboards.WebApi.GroupMemberPermission" -->
@@ -610,6 +675,15 @@
             <summary>
             identifies the scope of dashboard storage and permissions.
             </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardScope.Collection_User">
+            <summary>[DEPRECATED] Dashboard is scoped to the collection user.</summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardScope.Project_Team">
+            <summary>Dashboard is scoped to the team.</summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.Dashboards.WebApi.DashboardScope.Project">
+            <summary>Dashboard is scoped to the project.</summary>
         </member>
         <member name="T:Microsoft.TeamFoundation.Dashboards.WebApi.WidgetScope">
             <summary>
@@ -676,10 +750,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Dashboards.WebApi.Widget.SetMetaData(Microsoft.TeamFoundation.Dashboards.WebApi.WidgetMetadata)">
             <summary>
-            Applies metadata about the widget. 
-            
-            If metadata is not enabled for the current user, omit the settings payload, to protect widgets which have not explicitly been targeted for public use.
-            (Settings only matter to enabled widgets)
+            Applies metadata about the widget.
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Dashboards.WebApi.Widget.ContributionId">
@@ -736,6 +807,16 @@
         <member name="P:Microsoft.TeamFoundation.Dashboards.WebApi.WidgetMetadata.CatalogIconUrl">
             <summary>
             Resource for an icon in the widget catalog.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.Dashboards.WebApi.WidgetMetadata.Tags">
+            <summary>
+            Tags associated with this widget, visible on each widget and filterable.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.Dashboards.WebApi.WidgetMetadata.Keywords">
+            <summary>
+            Keywords associated with this widget, non-filterable and invisible
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Dashboards.WebApi.WidgetMetadata.LoadingImageUrl">

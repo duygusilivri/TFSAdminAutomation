@@ -1327,7 +1327,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ArtifactNotFound">
             <summary>
-            TF10099: {0} was not found on the Team Foundation Server.
+            TF10099: {0} was not found on the Azure DevOps Server.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.BadOptionWorkspaceEdit">
@@ -1387,12 +1387,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.VersionControlNotRegistered">
             <summary>
-            TF10109: Source control cannot locate the source control service on Team Foundation Server {0}. Check that you have a network connection and that your Team Foundation Server is available. If the problem persists, contact your Team Foundation Server administrator.
+            TF10109: Source control cannot locate the source control service on Azure DevOps Server {0}. Check that you have a network connection and that your Azure DevOps Server is available. If the problem persists, contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.CannotFindRegistrationInformation">
             <summary>
-            TF10110: The Team Foundation source control server information is not registered or not available.
+            TF10110: The Azure DevOps source control server information is not registered or not available.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.CannotSpecifyInheritWithPerms">
@@ -2919,7 +2919,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.MoreThanOneRepositorySpecified">
             <summary>
-            The server option specifies a different Team Foundation Server than the path arguments ({0}).
+            The server option specifies a different Azure DevOps Server than the path arguments ({0}).
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.MultipleFilesMatchQuestion_YN">
@@ -2934,7 +2934,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.MultipleWorkspacesSameName">
             <summary>
-            Multiple workspaces exist with the name {0}.Please specify the Team Foundation Server or qualify the name with the owner.
+            Multiple workspaces exist with the name {0}.Please specify the Azure DevOps Server or qualify the name with the owner.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.MustBeLocalWorkstation">
@@ -3153,7 +3153,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.NoMatchingWorkspaceFoundInRepository">
             <summary>
-            No workspace matching {0} on computer {1} found in Team Foundation Server {2}.
+            No workspace matching {0} on computer {1} found in Azure DevOps Server {2}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.NoPendingChanges">
@@ -3563,7 +3563,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.RepositoryNotFoundWithInfo">
             <summary>
-            Team Foundation Server {0} does not exist or is not accessible at this time.Technical information (for administrator):  {1}
+            Azure DevOps Server {0} does not exist or is not accessible at this time.Technical information (for administrator):  {1}
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.RequiresOneValue">
@@ -3618,12 +3618,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ServerDoesNotSupportChangingWorkspaceOwner">
             <summary>
-            The Team Foundation Server for this workspace does not support changing the owner of a workspace.
+            The Azure DevOps Server for this workspace does not support changing the owner of a workspace.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ServerDoesNotSupportChangingWorkspacePermissions">
             <summary>
-            The Team Foundation Server for this workspace does not support changing the permissions of a workspace.
+            The Azure DevOps Server for this workspace does not support changing the permissions of a workspace.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ServerInformation">
@@ -3753,12 +3753,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.TeamFoundationServerNameMissing">
             <summary>
-            A Team Foundation server name must be supplied.
+            An Azure DevOps Server name must be supplied.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ThreewayMergeInvalidEncodingForFile">
             <summary>
-            TF400962: The {0} file {1} could not be read with the encoding {2}.  Please merge the changes with the configured merge tool instead.  To prevent this error from reoccuring, you must ensure that the contents of the file are valid for the encoding specified in Team Foundation Server before checking in.  If the encoding specified in Team Foundation Server is incorrect, you can pend an encoding change to correct it.
+            TF500234: The {0} file {1} could not be read with the encoding {2}.  Please merge the changes with the configured merge tool instead.  To prevent this error from reoccuring, you must ensure that the contents of the file are valid for the encoding specified in Azure DevOps Server before checking in.  If the encoding specified in Azure DevOps Server is incorrect, you can pend an encoding change to correct it.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.TooManyItemsSpecified">
@@ -4152,27 +4152,27 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.PcwNetworkFailureError">
             <summary>
-            Unable to connect to the specified source control serveron the Team Foundation Server {0}.
+            Unable to connect to the specified source control serveron the Azure DevOps Server {0}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.PcwNetworkFailureExplanation">
             <summary>
-            The Team Project Creation Wizard was unable to connect to the Team Foundation Server {0}.Without a connection, the wizard was unable to create the team project rootdirectory on the server.
+            The Team Project Creation Wizard was unable to connect to the Azure DevOps Server {0}.Without a connection, the wizard was unable to create the team project rootdirectory on the server.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.PcwNetworkFailureUserAction">
             <summary>
-            Contact the administrator for the Team Foundation Server {0}to confirm that the server is available on the network.Also, you might find additional helpful information in the project creation log.The log shows each action taken by the wizard at the time of the failure andmay include additional details about the error.
+            Contact the administrator for the Azure DevOps Server {0}to confirm that the server is available on the network.Also, you might find additional helpful information in the project creation log.The log shows each action taken by the wizard at the time of the failure andmay include additional details about the error.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.PcwDuplicateProjectNameError">
             <summary>
-            Duplicate name for the source control folder on the Team Foundation server {0}
+            Duplicate name for the source control folder on the Azure DevOps Server {0}
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.PcwDuplicateProjectNameExplanation">
             <summary>
-            The name you typed for the new team project is already in use as a site on the source controlserver. The team project name must be unique on all Team Foundation servers used by the newproject.
+            The name you typed for the new team project is already in use as a site on the source controlserver. The team project name must be unique on all Azure DevOps Servers used by the newproject.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.PcwDuplicateProjectNameUserAction">
@@ -4262,12 +4262,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.DepthOneMappingsNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support one-level mapping depth.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support one-level mapping depth.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.QueueForEditNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support queuing pending edit requests for later replay.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support queuing pending edit requests for later replay.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.QueueForEditRequiresServerWorkspace">
@@ -4277,7 +4277,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.WorkingFolderWildcard">
             <summary>
-            TF203003: You cannot specify a wildcard character for this working folder. The only wildcard character allowed is an &apos;*&apos; to map a Team Foundation Server folder and its immediate child items to your workspace.
+            TF203003: You cannot specify a wildcard character for this working folder. The only wildcard character allowed is an &apos;*&apos; to map an Azure DevOps Server folder and its immediate child items to your workspace.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ServerItemRequiredException">
@@ -4327,7 +4327,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.DestroyNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support the Destroy command.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support the Destroy command.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.CannotDeleteOnPartialUnshelve">
@@ -4422,12 +4422,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.RollbackNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support the Rollback command.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support the Rollback command.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.QueryMergeCandidatesOptionsNotSupported">
             <summary>
-            TF400039: The Team Foundation server to which your team project is connected does not support passing options to the QueryMergeCandidates command.
+            TF400039: The Azure DevOps Server to which your team project is connected does not support passing options to the QueryMergeCandidates command.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.VersionSpecOnlyTwoValid">
@@ -4462,7 +4462,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ExtendedMergesNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support requesting extended merge information.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support requesting extended merge information.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.CannotCreateOrModifyPropertyWithTFSPrefix">
@@ -4472,7 +4472,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.CheckInOptions2NotSupported">
             <summary>
-            TF204000: The Team Foundation Server for this workspace does not support one or more of the checkin options you have selected.
+            TF204000: The Azure DevOps Server for this workspace does not support one or more of the checkin options you have selected.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.WorkspaceDiffNotSupported">
@@ -4482,7 +4482,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.CheckInShelvesetNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support the CheckInShelveset command.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support the CheckInShelveset command.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.RootInheritanceException">
@@ -4502,17 +4502,17 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.AddProxyNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support the AddProxy command.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support the AddProxy command.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.DeleteProxyNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support the DeleteProxy command.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support the DeleteProxy command.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.QueryProxiesNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support the QueryProxies command.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support the QueryProxies command.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.SpecifyOneUrl">
@@ -4537,7 +4537,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.InvalidProxyUrl">
             <summary>
-            TF15044: Unable to connect to this Team Foundation Proxy Server: {0}.Possible reasons for failure include:- The Team Foundation Proxy Server name, port number or protocol is incorrect.- The Team Foundation Proxy Server is offline.- Password is expired or incorrect.For further information, contact the Team Foundation Proxy administrator.
+            TF15044: Unable to connect to this Azure DevOps Proxy Server: {0}.Possible reasons for failure include:- The Azure DevOps Proxy Server name, port number or protocol is incorrect.- The Azure DevOps Proxy Server is offline.- Password is expired or incorrect.For further information, contact the Azure DevOps Proxy administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.MustConfigureProxySetting">
@@ -4677,12 +4677,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.CreateBranchNotSupported">
             <summary>
-            TF204006: The Team Foundation server to which your team project is connected does not support the CreateBranch method.
+            TF204006: The Azure DevOps Server to which your team project is connected does not support the CreateBranch method.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.GetChangesForChangesetNotSupported">
             <summary>
-            TF204007: The Team Foundation server to which your team project is connected does not support the GetChangesForChangeset method.
+            TF204007: The Azure DevOps Server to which your team project is connected does not support the GetChangesForChangeset method.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.IdentityNotFoundException">
@@ -4692,12 +4692,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.CouldNotReachProxy">
             <summary>
-            A Team Foundation Server proxy could not be found at the provided URL: {0}The proxy will be added to the server, but you should check the URL to see if it is correct.
+            An Azure DevOps Server proxy could not be found at the provided URL: {0}The proxy will be added to the server, but you should check the URL to see if it is correct.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.QueryLocalVersionsNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support the QueryLocalVersions command.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support the QueryLocalVersions command.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.WorkspacePermissionsProfileIndeterminate">
@@ -4707,7 +4707,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.GetPendingChangesForWorkspaceNotSupported">
             <summary>
-            TF204007: The Team Foundation server to which your team project is connected does not support this overload of the GetPendingChanges method.
+            TF204007: The Azure DevOps Server to which your team project is connected does not support this overload of the GetPendingChanges method.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.Permissions">
@@ -4727,7 +4727,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.PropertyOperationsNotSupported">
             <summary>
-            TF400309: Properties operations are not valid on the version of Team Foundation Server on which your team project is hosted.
+            TF400309: Properties operations are not valid on the version of Azure DevOps Server on which your team project is hosted.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.GetChangesWithPropertiesNotSupported">
@@ -4747,7 +4747,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.TrackMergesNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support tracking merges.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support tracking merges.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ResourceAccessException">
@@ -4772,7 +4772,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.BranchObjectsNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support branch objects.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support branch objects.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.PendingChangesInvalidPageSize">
@@ -4812,7 +4812,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.QueryMergeRelationshipsNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support querying merge relationships.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support querying merge relationships.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.RenameSourceUnreadable">
@@ -4837,12 +4837,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.GatedCheckinQueued">
             <summary>
-            Your check-in has been placed into shelveset {0} and submitted for validation by build definition {1}.
+            Your check-in has been placed into shelveset {0} and submitted for validation by build pipeline {1}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.GatedCheckinShelvesetQueued">
             <summary>
-            Your shelveset has been submitted for validation by build definition {0}.
+            Your shelveset has been submitted for validation by build pipeline {0}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ResubmittingCheckin">
@@ -4862,7 +4862,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.UnshelveWithMergeNotSupported">
             <summary>
-            TF400016: Unshelve with Merge is not supported on the version of Team Foundation Server on which your team project is hosted.
+            TF400016: Unshelve with Merge is not supported on the version of Azure DevOps Server on which your team project is hosted.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.WorkingFoldersOnlyForLocalWorkspaces">
@@ -4872,7 +4872,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.LocalWorkspacesNotSupported">
             <summary>
-            TF204000: The Team Foundation server to which your team project is connected does not support local workspaces.
+            TF204000: The Azure DevOps Server to which your team project is connected does not support local workspaces.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.UnableToLoadLocalPropertiesTable">
@@ -5173,17 +5173,17 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ServerSettingsNotSupported">
             <summary>
-            TF400027: The Team Foundation server to which your team project is connected does not support querying or setting version control settings.
+            TF400027: The Azure DevOps Server to which your team project is connected does not support querying or setting version control settings.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ShelvesetPropertyOperationsNotSupported">
             <summary>
-            TF400028: Shelveset property operations are not valid on the version of Team Foundation Server on which your team project is hosted.
+            TF400028: Shelveset property operations are not valid on the version of Azure DevOps Server on which your team project is hosted.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.ShelvesetUpdateOperationsNotSuppoerted">
             <summary>
-            TF400029: Shelveset meta-data other than the Properties bag cannot be updated against the version of Team Foundation Server on which your team project is hosted.
+            TF400029: Shelveset meta-data other than the Properties bag cannot be updated against the version of Azure DevOps Server on which your team project is hosted.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.DefaultLocalItemExclusions">
@@ -5230,7 +5230,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.SetFileTimeNotSupported">
             <summary>
-            TF400038: The Team Foundation server to which your team project is connected does not support setting the file time option on a workspace.
+            TF400038: The Azure DevOps Server to which your team project is connected does not support setting the file time option on a workspace.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.AutoResolvedConflict">
@@ -5300,7 +5300,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.PropertyChangesNotSupported">
             <summary>
-            TF400299: The Team Foundation server to which your team project is connected does not support operations related to property changes.
+            TF400299: The Azure DevOps Server to which your team project is connected does not support operations related to property changes.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.BinaryValue">
@@ -5375,12 +5375,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.AttributeOperationsNotSupported">
             <summary>
-            TF204010: Attribute operations are not valid on the version of Team Foundation Server on which your team project is hosted.
+            TF204010: Attribute operations are not valid on the version of Azure DevOps Server on which your team project is hosted.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.UnversionedAttributesNotSupported">
             <summary>
-            TF400310: Setting attributes on unversioned items are not valid on the version of Team Foundation Server on which your team project is hosted.
+            TF400310: Setting attributes on unversioned items are not valid on the version of Azure DevOps Server on which your team project is hosted.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.PropertiesCommandObsolete">
@@ -5515,7 +5515,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.RemoveConnection_YNA">
             <summary>
-            Do you want to remove Team Foundation Server {0}?
+            Do you want to remove Azure DevOps Server {0}?
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.NoServerUrl">
@@ -5545,7 +5545,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.PropertyChangesScopedByProjectNotSupported">
             <summary>
-            TF402397: The Team Foundation Server to which your team project is connected does not support operations related to property changes that are project scoped.
+            TF402397: The Azure DevOps Server to which your team project is connected does not support operations related to property changes that are project scoped.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Common.Internal.Resources.CannotUseXmlWithCachedWorkspaces">

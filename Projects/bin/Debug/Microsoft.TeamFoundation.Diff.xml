@@ -197,7 +197,7 @@
             Constructs a new DiffLineTokenizer for the given stream and encoding.
             </summary>
             <param name="stream">The stream to tokenize.</param>
-            <param name="encoding">The character encoding of the bytes 
+            <param name="encoding">The character encoding of the bytes
             in the stream. If null, this will be automatically detected.</param>
         </member>
         <member name="M:Microsoft.TeamFoundation.Diff.DiffLineTokenizer.FillBuffer">
@@ -212,7 +212,7 @@
             <summary>
             Gets the next line token as a string from the stream.
             </summary>
-            <returns>The next token. Returns null when the end of stream has 
+            <returns>The next token. Returns null when the end of stream has
             been reached.</returns>
         </member>
         <member name="T:Microsoft.TeamFoundation.Diff.DiffChangeHelper">
@@ -220,7 +220,7 @@
             A utility class which helps to create the set of DiffChanges from
             a difference operation. This class accepts original DiffElements and
             modified DiffElements that are involved in a particular change. The
-            MarktNextChange() method can be called to mark the seration between 
+            MarktNextChange() method can be called to mark the seration between
             distinct changes. At the end, the Changes property can be called to retrieve
             the constructed changes.
             </summary>
@@ -348,13 +348,13 @@
             <returns>True if the specified elements are equal</returns>
         </member>
         <member name="M:Microsoft.TeamFoundation.Diff.DiffFinder`1.ComputeUniqueIdentifiers(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            This method hashes element groups within the specified range
-            and assigns unique identifiers to identical elements.
+             <summary>
+             This method hashes element groups within the specified range
+             and assigns unique identifiers to identical elements.
             
-            This greatly speeds up element comparison as we may compare integers
-            instead of having to look at element content.
-            </summary>
+             This greatly speeds up element comparison as we may compare integers
+             instead of having to look at element content.
+             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Diff.DiffFinder`1.Diff(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Collections.Generic.IEqualityComparer{`0})">
             <summary>
@@ -367,7 +367,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Diff.DiffFinder`1.tokenizeWords(System.Collections.Generic.IList{`0},System.Int32,System.Int32)">
             <summary>
-            Given a file create an array of words.  Words are defined by a punctuationBreaks characters.  
+            Given a file create an array of words.  Words are defined by a punctuationBreaks characters.
             </summary>
         </member>
         <member name="T:Microsoft.TeamFoundation.Diff.DiffFinder`1.WordComparer">
@@ -388,7 +388,21 @@
             
              The current use case is that we calulate line block diffs by calling
              - IDiffChange[] diffList = _diffFinder.Diff(_original, _modified, _comparer);
-             We then take the results of the line diff and calculate word diffs by calling    
+             We then take the results of the line diff and calculate word diffs by calling
+             - _diffFinder.WordDiff(diffList, _original, _modified)
+            
+             <param name="lineDiffs">IDiffChange[] that were previously calculated (most likely by a call to Diff)</param>
+             <param name="original">original sequence</param>
+             <param name="modified">modified sequence</param>
+             </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Diff.DiffFinder`1.WordDiff(Microsoft.TeamFoundation.Diff.IDiffChange[],System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},Microsoft.TeamFoundation.Diff.ContinueDifferencePredicate{Microsoft.TeamFoundation.Diff.WordPosition})">
+             <summary>
+             Performs a word level diff comparision
+            
+             The current use case is that we calulate line block diffs by calling
+             - IDiffChange[] diffList = _diffFinder.Diff(_original, _modified, _comparer);
+             We then take the results of the line diff and calculate word diffs by calling
              - _diffFinder.WordDiff(diffList, _original, _modified)
             
              <param name="lineDiffs">IDiffChange[] that were previously calculated (most likely by a call to Diff)</param>
@@ -407,10 +421,10 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Diff.DiffFinder`1.ComputeDiff(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Computes the differences between the original and modified input 
+            Computes the differences between the original and modified input
             sequences on the bounded range.
             </summary>
-            <returns>An array of the differences between the two input 
+            <returns>An array of the differences between the two input
             sequences.</returns>
         </member>
         <member name="P:Microsoft.TeamFoundation.Diff.DiffFinder`1.LcsDiff">
@@ -444,7 +458,7 @@
              Note that for this to have any effect, the secondary comparer must be
              MORE STRICT than the primary.  And because we only receive generic comparer
              objects (and not the actual set of ignore flags), we cannot protect you here.
-             
+            
              If the secondary comparer is null, we behave like the original Diff().
              </summary>
              <param name="original">The original sequence.</param>

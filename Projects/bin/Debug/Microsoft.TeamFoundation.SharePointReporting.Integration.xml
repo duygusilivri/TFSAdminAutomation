@@ -1440,7 +1440,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.SharePointReportingResources.SharePoint_WssUtilities_FolderCreationError">
             <summary>
-            TF249034: A folder could not be created. The account might not have the required permissions to create a folder in this location.
+            TF249034: A folder could not be created. The organization might not have the required permissions to create a folder in this location.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.SharePointReportingResources.SharePoint_WssUtilities_FileNameError(System.Object)">

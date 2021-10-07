@@ -4154,7 +4154,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Lab.Client.Resource.APINotAvailableOnServer">
             <summary>
-            This functionality is not available on the installed version of Team Foundation Server.
+            This functionality is not available on the installed version of Azure DevOps Server.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Lab.Client.Resource.CopyOfTestSystemNameFormat(System.Object)">

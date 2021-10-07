@@ -761,7 +761,7 @@
         </member>
         <member name="P:Microsoft.TeamFoundation.ProjectManagement.Resources.OperationNotSuported">
             <summary>
-              Looks up a localized string similar to This operation is not supported against this version of Team Foundation Server..
+              Looks up a localized string similar to This operation is not supported against this version of Azure DevOps Server..
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.ProjectManagement.Resources.ProcessConfigOnOldServerNotSupported">

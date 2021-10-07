@@ -216,7 +216,7 @@
         </member>
         <member name="P:Microsoft.TeamFoundation.TestImpact.Client.Properties.Resources.TestImpactServiceNotSupported">
             <summary>
-              Looks up a localized string similar to The test impact service is not supported by the Team Foundation Server..
+              Looks up a localized string similar to The test impact service is not supported by the Azure DevOps Server..
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.TestImpact.Client.Properties.Resources.TestNotProjectTest">

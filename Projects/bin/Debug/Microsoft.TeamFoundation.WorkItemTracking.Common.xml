@@ -144,6 +144,16 @@
               Looks up a localized string similar to In Group.
             </summary>
         </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Common.CommonClientResourceStrings.WiqlOperators_IsEmpty">
+            <summary>
+              Looks up a localized string similar to Is Empty.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Common.CommonClientResourceStrings.WiqlOperators_IsNotEmpty">
+            <summary>
+              Looks up a localized string similar to Is Not Empty.
+            </summary>
+        </member>
         <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Common.CommonClientResourceStrings.WiqlOperators_LessThan">
             <summary>
               Looks up a localized string similar to &lt;.
@@ -187,6 +197,31 @@
         <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Common.CommonClientResourceStrings.WiqlOperators_MacroRecentProjectActivity">
             <summary>
               Looks up a localized string similar to RecentProjectActivity.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Common.CommonClientResourceStrings.WiqlOperators_MacroStartOfDay">
+            <summary>
+              Looks up a localized string similar to StartOfDay.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Common.CommonClientResourceStrings.WiqlOperators_MacroStartOfMonth">
+            <summary>
+              Looks up a localized string similar to StartOfMonth.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Common.CommonClientResourceStrings.WiqlOperators_MacroStartOfWeek">
+            <summary>
+              Looks up a localized string similar to StartOfWeek.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Common.CommonClientResourceStrings.WiqlOperators_MacroStartOfYear">
+            <summary>
+              Looks up a localized string similar to StartOfYear.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Common.CommonClientResourceStrings.WiqlOperators_MacroTeamAreas">
+            <summary>
+              Looks up a localized string similar to TeamAreas.
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Common.CommonClientResourceStrings.WiqlOperators_MacroToday">
@@ -352,7 +387,7 @@
             </param>
             <param name="fieldDisplayName">The display string of the field, usually a localized value.</param>
         </member>
-        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Common.Presentation.HtmlFormatter.FormatInputData(Microsoft.TeamFoundation.WorkItemTracking.Common.Presentation.FormattingWorkItemCollection,System.Collections.Generic.IEnumerable{Microsoft.TeamFoundation.WorkItemTracking.Common.Presentation.FormattingFieldDefinition},Microsoft.TeamFoundation.WorkItemTracking.Common.Presentation.IWorkItemUrlBuilder)">
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Common.Presentation.HtmlFormatter.FormatInputData(Microsoft.TeamFoundation.WorkItemTracking.Common.Presentation.FormattingWorkItemCollection,System.Collections.Generic.IEnumerable{Microsoft.TeamFoundation.WorkItemTracking.Common.Presentation.FormattingFieldDefinition},Microsoft.TeamFoundation.WorkItemTracking.Common.Presentation.IWorkItemUrlBuilder,System.Boolean)">
             <summary>
             <remarks>Use LINQ to format inputWorkItemData into XML document that represents an HTML table.</remarks>
             </summary>
@@ -460,6 +495,11 @@
             </summary>
             <param name="operatorName">Name of the operator.</param>
             <returns>The newly qualified operator name.</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Common.WiqlOperators.IsComplexMacro(System.String,System.Boolean)">
+            <summary>
+            Gets complex macros that may have arguments or addition/subraction operators on them.
+            </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Common.WiqlOperators.IsCurrentIterationMacro(System.String,System.Boolean)">
             <summary>
@@ -588,6 +628,17 @@
             <summary>
             strip disallowed tags and attributes, and return content in a stringbuilder for continued processing.
             </summary>        
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Internals.IWiqlAdapterHelper.RewriteCondition(Microsoft.TeamFoundation.WorkItemTracking.Client.Wiql.NodeCondition,Microsoft.TeamFoundation.WorkItemTracking.Client.Wiql.Node@)">
+            <summary>
+            Check if the given condition contains the macro.
+            If it does rewrite the entire condition. This makes it possible 
+            for the macro extension to change the operator or
+            even substitute in whole logic trees of conditions instead of just 1 condition
+            </summary>
+            <param name="condition">node to target for replacement</param>
+            <param name="rewritten">node to replace with</param>
+            <returns>Whether any replacement is being requested</returns>
         </member>
         <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Internals.LinkProperties">
             <summary>
@@ -796,7 +847,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Internals.WiqlAdapter.OptimizeNode(Microsoft.TeamFoundation.WorkItemTracking.Client.Wiql.Node,Microsoft.TeamFoundation.WorkItemTracking.Client.Wiql.NodeTableName,Microsoft.TeamFoundation.WorkItemTracking.Client.Wiql.NodeFieldName)">
             <summary>
-            IExternal. Additional database dependent optimizations.
+            Rewrite query and add database dependent optimizations
             </summary>
             <param name="node"></param>
             <param name="tableContext"></param>
@@ -908,36 +959,6 @@
             <param name="nodeSelect"></param>
             <returns></returns>
         </member>
-        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Internals.WITFavoritesConstants">
-            <summary>
-            Constants for work item tracking area Favorites
-            </summary>
-        </member>
-        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.WITFavoritesConstants.WorkItemQueryFavoriteId">
-            <summary>
-            Type Id for work item query items in Favorite and Pin stores
-            </summary>
-        </member>
-        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.WITFavoritesConstants.WorkItemQueryFavoriteScope">
-            <summary>
-            Favorites Store Scope of the work item queries
-            </summary>
-        </member>
-        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.WITFavoritesConstants.WorkItemQueryPinScope">
-            <summary>
-            Pin store Scope of the work item queries
-            </summary>
-        </member>
-        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.WITFavoritesConstants.WorkItemQueryChartFavoriteId">
-            <summary>
-            Type Id of the work item query Charts
-            </summary>
-        </member>
-        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.WITFavoritesConstants.WorkItemQueryChartPinScope">
-            <summary>
-            Pin store Scope of work item query Charts
-            </summary>
-        </member>
         <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Internals.WorkItemHelper.LoadRevisions(Microsoft.TeamFoundation.WorkItemTracking.Internals.IRowSetCollectionHelper,Microsoft.TeamFoundation.WorkItemTracking.Internals.IWorkItemOpenFieldDataHelper,System.Collections.Generic.Dictionary{System.Int32,System.Object})">
             <summary>
             Note: This implementation will upcast the tables param to IRowSetCollectionHelper2 when available.
@@ -963,7 +984,7 @@
         <!-- Badly formed XML comment ignored for member "F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.BuletPlainText" -->
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorInGroupNotSupported">
             <summary>
-            TF248007: You cannot use the &apos;in group&apos; operator to run a query. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2010.
+            TF248007: You cannot use the &apos;in group&apos; operator to run a query. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorInvalidQueryItemName">
@@ -973,17 +994,17 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorQueryFieldsComparisonNotSupported">
             <summary>
-            TF248009: You cannot run a query that compares fields. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2010.
+            TF248009: You cannot run a query that compares fields. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorWitCategoriesNotSupported">
             <summary>
-            TF248003: You cannot create categories of work item types. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Visual Studio Team Foundation Server 2010.
+            TF248003: You cannot create categories of work item types. Either this feature is not enabled on this server, or the server version is earlier than Visual Studio Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorWitLinksNotSupported">
             <summary>
-            TF248004: You cannot create custom types of links between work items. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2010.
+            TF248004: You cannot create custom types of links between work items. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorWrongFieldTypeInInGroup">
@@ -1016,12 +1037,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.QueryNameTooLong">
             <summary>
-            TF26168: Team Foundation does not support query or folder names over {0} characters long. Shorten the query name and try again.
+            TF26168: Azure DevOps Server does not support query or folder names over {0} characters long. Shorten the query name and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.UnrecognizedServerData">
             <summary>
-            The Team Foundation Server returned data which are not recognized.
+            The Azure DevOps Server returned data which are not recognized.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorNotUniqueStoredQuery">
@@ -1046,7 +1067,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorServerInternalUnknown">
             <summary>
-            There is a problem on the server. Contact your Team Foundation Server administrator.
+            There is a problem on the server. Contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorRequestNotCancelable">
@@ -1141,7 +1162,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorWorkItemUpdateForceRollback">
             <summary>
-            TF237165: Team Foundation could not update the work item because of a validation error on the server. This may happen because the work item type has been modified or destroyed, or you do not have permission to update the work item.
+            TF237165: Azure DevOps Server could not update the work item because of a validation error on the server. This may happen because the work item type has been modified or destroyed, or you do not have permission to update the work item.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorChangesRejected">
@@ -1156,7 +1177,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorSqlErrorLoginFailed">
             <summary>
-            TF26161: You have been denied permissions to the SQL Server database. Team Foundation Server is not properly configured. Contact your Team Foundation Server administrator.
+            TF26161: You have been denied permissions to the SQL Server database. Azure DevOps Server is not properly configured. Contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorSqlErrorDeadlock">
@@ -1171,27 +1192,27 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorCannotOpenDatabase">
             <summary>
-            TF237148: The Team Foundation Server work item database cannot be opened. It may be offline for system administration. Try again later or contact your Team Foundation Server administrator.
+            TF237148: The Azure DevOps Server work item database cannot be opened. It may be offline for system administration. Try again later or contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorNotAProjectUser">
             <summary>
-            TF26157: You are not a recognized user in the current team project. Contact your Team Foundation Server administrator to request permissions to this team project.
+            TF26157: You are not a recognized user in the current team project. Contact your Azure DevOps Server administrator to request permissions to this team project.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorNotANamespaceAdmin">
             <summary>
-            TF26155: You are not a recognized Team Foundation administrator in the current team project. Contact the Team Foundation Server administrator.
+            TF26155: You are not a recognized Azure DevOps Server administrator in the current team project. Contact the Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorWorkItemUpdateWorkItemMissingOrUpdated">
             <summary>
-            TF237079: Team Foundation could not update the work item because it was already updated by another user, it does not exist, or you do not have permission to update it.
+            TF237079: Azure DevOps Server could not update the work item because it was already updated by another user, it does not exist, or you do not have permission to update it.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorAddConstantNotValidDomainAccount">
             <summary>
-            TF26204: The account you entered is not recognized. Contact your Team Foundation Server administrator to add your account.
+            TF26204: The account you entered is not recognized. Contact your Azure DevOps Server administrator to add your account.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorChangeFieldReportingTypeAlreadySet">
@@ -1216,7 +1237,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.InvalidProjectNodeId">
             <summary>
-            Could not find the team project node on the Team Foundation Server.
+            Could not find the team project node on the Azure DevOps Server.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorAddFileFileAlreadyExists">
@@ -1231,7 +1252,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorSqlInsufficientMemory">
             <summary>
-            TF237162: There is insufficient system memory on the Team Foundation Server SQL Server to run this query.
+            TF237162: There is insufficient system memory on the Azure DevOps Server SQL Server to run this query.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorNotEnoughFields">
@@ -1241,7 +1262,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.IndexAssociatedWithFieldError">
             <summary>
-            Field cannot be deleted because an index is associated with the field. Please contact your Team Foundation Server administrator.
+            Field cannot be deleted because an index is associated with the field. Please contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorNoPermissionToModify">
@@ -1261,7 +1282,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorUserOrGroupNotFound">
             <summary>
-            TF201072: A user or group could not be found. Verify that the users and groups used in your work item type definition have been added to Team Foundation Server.
+            TF201072: A user or group could not be found. Verify that the users and groups used in your work item type definition have been added to Azure DevOps Server.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ImportWorkItemLinkTypeException_InvalidRules">
@@ -1319,6 +1340,11 @@
             TF201031: {0} is not a valid type of link. Check the spelling and capitalization. If you&apos;re not sure, use witadmin.exe to list the available link types. See the command-line help topic witadmin (https://go.microsoft.com/fwlink/?LinkId=75598) for more details.
             </summary>
         </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.LinkTypeNotSupportedForQuerying">
+            <summary>
+            The link type &apos;{0}&apos; is not a supported link type for querying.
+            </summary>
+        </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.LinkNotFoundForDelete">
             <summary>
             TF201032: The {0} link between work items {1} and {2} that you are attempting to delete does not exist. It may have been deleted by another user.
@@ -1332,6 +1358,26 @@
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.AddLinkCannotLinkToSelf">
             <summary>
             TF201033: A work item cannot be linked to itself.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.AddRemoteLinkCannotLinkToSameAccount">
+            <summary>
+            VS403467: A remote work item cannot link to the same account.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.AddRemoteLinkAccountRequired">
+            <summary>
+            VS403469: Account is required for remote work item links.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.RemoteLinkInvalidUriException">
+            <summary>
+            VS403475: The remote uri is either invalid or service is unavailable.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.AddRemoteLinkProjectRequired">
+            <summary>
+            VS403470: Project is required for remote work item links.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.AddLinkDisabledType">
@@ -1436,7 +1482,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorBisAttributeNotFound">
             <summary>
-            TF26175: Team Foundation Core Services attribute &apos;{0}&apos; not found.
+            TF26175: Azure DevOps Core Services attribute &apos;{0}&apos; not found.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorInvalidOnParamedQuery">
@@ -1446,7 +1492,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorBisMiddleTierNotRegistered">
             <summary>
-            TF26176: Could not connect to the specified Team Foundation Server collection URL. Please check the URL and try again.
+            TF26176: Could not connect to the specified Azure DevOps Server collection URL. Please check the URL and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorNodeNotExist">
@@ -1456,12 +1502,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorCannotFindNodeFromId">
             <summary>
-            TF26006: Team Foundation could not find {0}.
+            TF26006: Azure DevOps Server could not find {0}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorCouldNotConnect">
             <summary>
-            TF26012: Cannot connect to Team Foundation Server.
+            TF26012: Cannot connect to Azure DevOps Server.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorDeniedOrNotExist">
@@ -1571,12 +1617,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorRelatedLinkToSelf">
             <summary>
-            TF26196: Team Foundation does not support relating a work item to itself. Select a different related work item.
+            TF26196: Azure DevOps Server does not support relating a work item to itself. Select a different related work item.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorWorkItemStoreAlreadyConnected">
             <summary>
-            TF26199: Cannot connect to a different server for a work item store that has successfully connected to a Team Foundation Server
+            TF26199: Cannot connect to a different server for a work item store that has successfully connected to an Azure DevOps Server
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorWorkItemTypeNotExist">
@@ -1671,17 +1717,17 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorCannotSortBy">
             <summary>
-            TF26009: Team Foundation does not support sorting by this field.
+            TF26009: Azure DevOps Server does not support sorting by this field.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorLinkCommentTooLong">
             <summary>
-            TF26079: Team Foundation does not support link comments over {0} characters long. Shorten the comment and try again.
+            TF26079: Azure DevOps Server does not support link comments over {0} characters long. Shorten the comment and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorLinkLocationTooLong">
             <summary>
-            TF26185: Team Foundation does not support link paths over {0} characters long. Shorten the link path and try again.
+            TF26185: Azure DevOps Server does not support link paths over {0} characters long. Shorten the link path and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorHistory">
@@ -1801,12 +1847,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorAttachmentFileNotFound">
             <summary>
-            TF26003: Team Foundation could not find the file. Check the file name and path and try again.
+            TF26003: Azure DevOps Server could not find the file. Check the file name and path and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorAttachmentCommentTooLong">
             <summary>
-            TF26002: Team Foundation does not support comments over {0} characters long. Shorten your comment and try again.
+            TF26002: Azure DevOps Server does not support comments over {0} characters long. Shorten your comment and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorAttachmentAlreadyExists">
@@ -1839,7 +1885,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.QueryDescriptionTooLong">
             <summary>
-            TF26163: Team Foundation does not support query descriptions over {0} characters long. Shorten the description and try again.
+            TF26163: Azure DevOps Server does not support query descriptions over {0} characters long. Shorten the description and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.TagFormatCreate">
@@ -1928,7 +1974,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorFieldNotQueryable">
             <summary>
-            TF26036: Team Foundation does not support querying on this field &apos;{0}&apos;. Change your query and try again.
+            TF26036: Azure DevOps Server does not support querying on this field &apos;{0}&apos;. Change your query and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorUserNotFoundForSid">
@@ -1938,7 +1984,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorServerRejectedChangesException">
             <summary>
-            TF26212: Team Foundation Server could not save your changes. There may be problems with the work item type definition, or a conflicting work item type definition change may require a refresh on your client. Restart your client application and try again, or contact your Team Foundation Server administrator.
+            TF26212: Azure DevOps Server could not save your changes. There may be problems with the work item type definition, or a conflicting work item type definition change may require a refresh on your client. Restart your client application and try again, or contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorOrphanedItem">
@@ -1968,22 +2014,22 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.WebExceptionConnectFailed">
             <summary>
-            TF26173: Team Foundation could not connect to the application tier. Check that you have a network connection and that the Team Foundation Server is available. If the problem persists, contact your Team Foundation Server administrator.
+            TF26173: Azure DevOps Server could not connect to the application tier. Check that you have a network connection and that the Azure DevOps Server is available. If the problem persists, contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.WebExceptionCouldNotReachServer">
             <summary>
-            TF26173: Team Foundation could not connect to the application tier. Check that you have a network connection and that the Team Foundation Server is available. If the problem persists, contact your Team Foundation Server administrator.
+            TF26173: Azure DevOps Server could not connect to the application tier. Check that you have a network connection and that the Azure DevOps Server is available. If the problem persists, contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.CouldNotReachServer">
             <summary>
-            TF26000: Could not connect to the Team Foundation Server. Check that you have a network connection and that your Team Foundation server is available.
+            TF26000: Could not connect to the Azure DevOps Server. Check that you have a network connection and that your Azure DevOps Server is available.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.WebExceptionTimeOut">
             <summary>
-            TF26174: Team Foundation timed out trying to connect to the server. Check that you have a network connection and that the Team Foundation Server is available. If the problem persists, contact your Team Foundation Server administrator.
+            TF26174: Azure DevOps Server timed out trying to connect to the server. Check that you have a network connection and that the Azure DevOps Server is available. If the problem persists, contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.BackendArgumentException">
@@ -2063,7 +2109,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorAttachmentUploadFailed">
             <summary>
-            TF237082: The attachment could not be uploaded. Verify that you have a network connection and that Team Foundation Server is available. If the problem persists, provide the following information to the server administrator. The server returned the following message: {0}
+            TF237082: The attachment could not be uploaded. Verify that you have a network connection and that Azure DevOps Server is available. If the problem persists, provide the following information to the server administrator. The server returned the following message: {0}
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorTwoWidthElements">
@@ -2338,12 +2384,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.LinksControlCannotContainLinksOptions">
             <summary>
-            TF237176: The import failed.  The work item type definition that you are trying to import contains a links control with an element {0} that is not supported on this server. That element is supported by a more recent version of Team Foundation Server.
+            TF237176: The import failed.  The work item type definition that you are trying to import contains a links control with an element {0} that is not supported on this server. That element is supported by a more recent version of Azure DevOps Server.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.LinksControlUnknownFilterName">
             <summary>
-            TF201044: The link type filter &apos;{0}&apos; specifies a link type that does not exist on the Team Foundation Server. Specify a valid link type.
+            TF201044: The link type filter &apos;{0}&apos; specifies a link type that does not exist on the Azure DevOps Server. Specify a valid link type.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.LinksControlLinkAttributeInvalid">
@@ -2403,12 +2449,17 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.QueryHierarchyServerDoesNotSupportFolders">
             <summary>
-            TF237005: You cannot create a query folder with this version of Team Foundation Server. Upgrade to a newer version of Team Foundation Server in order to create query folders.
+            TF237005: You cannot create a query folder with this version of Azure DevOps Server. Upgrade to a newer version of Azure DevOps Server in order to create query folders.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.QueryHierarchyServerDoesNotSupportPermissions">
             <summary>
-            TF237199: You cannot set query or query folder permissions with this version of Team Foundation Server. Upgrade to a newer version of Team Foundation Server in order to set permissions.
+            TF237199: You cannot set query or query folder permissions with this version of Azure DevOps Server. Upgrade to a newer version of Azure DevOps Server in order to set permissions.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.IsEmptyValidWith">
+            <summary>
+            Is Empty can only be used with history, long text and plaintext fields.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.QueryHierarchyCannotAddParentAsChild">
@@ -2538,7 +2589,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorFieldReportabilityChange">
             <summary>
-            TF201078: You are trying to import a type of work item that uses the field &apos;{0}&apos;. Your definition of the field includes a reportable setting that differs from the setting for that field in the database for Team Foundation Server. To change the database setting, you must log on as a member of the Project Collection Administrators group. To import the type of work item without changing the database setting, you must remove the setting from your definition of the field, or you must change that setting to match the database.
+            TF201078: You are trying to import a type of work item that uses the field &apos;{0}&apos;. Your definition of the field includes a reportable setting that differs from the setting for that field in the database for Azure DevOps Server. To change the database setting, you must log on as a member of the Project Collection Administrators group. To import the type of work item without changing the database setting, you must remove the setting from your definition of the field, or you must change that setting to match the database.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorFieldIndexingInvalidType">
@@ -2558,22 +2609,22 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorGuidFieldsNotSupported">
             <summary>
-            TF248005: You cannot create a field of the GUID. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2010.
+            TF248005: You cannot create a field of the GUID. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorBoolFieldsNotSupported">
             <summary>
-            TF248006: You cannot create a field of the Boolean type. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2010.
+            TF248006: You cannot create a field of the Boolean type. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorRevisionQueriesNotSupported">
             <summary>
-            TF248008: You cannot run a query for revisions. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2010.
+            TF248008: You cannot run a query for revisions. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorLinkLockingNotSupported">
             <summary>
-            TF248010: You cannot lock a link between work items. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2010.
+            TF248010: You cannot lock a link between work items. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorComputedFieldInRevisionQuery">
@@ -2583,12 +2634,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorDifferentProjectsInBatchSave">
             <summary>
-            TF248011: You cannot save work items to more than one project in a single operation. Either this feature is not enabled on one of the servers, or it is running a version of Team Foundation Server that is earlier than Visual Studio Team Foundation Server 2010.
+            TF248011: You cannot save work items to more than one project in a single operation. Either this feature is not enabled on one of the servers, or the server version is earlier than Visual Studio Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorFullTextService">
             <summary>
-            TF248015: Your work item query could not be completed due to an unexpected error returned by the Microsoft SQL Server Full-text engine. Contact your system administrator to check the Application event log for Team Foundation Server.
+            TF248015: Your work item query could not be completed due to an unexpected error returned by the Microsoft SQL Server Full-text engine. Contact your system administrator to check the Application event log for Azure DevOps Server.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorRenameSafeChanged">
@@ -2627,7 +2678,7 @@
              <summary>
              {0} Full path to file, {1} The field which contains the file that failed to upload, {2} The error message that was returned from the server
             
-             TF602213: The image, &apos;{0}&apos;, inserted in the &apos;{1}&apos; field could not be uploaded. Verify that you have a network connection and that Team Foundation Server is available. If the problem persists, provide the following information to the server administrator. The server returned the following message: {2}
+             TF602213: The image, &apos;{0}&apos;, inserted in the &apos;{1}&apos; field could not be uploaded. Verify that you have a network connection and that Azure DevOps Server is available. If the problem persists, provide the following information to the server administrator. The server returned the following message: {2}
              </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorDeleteFieldNoPermission">
@@ -2746,7 +2797,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorIdentityFieldsNotSupported">
             <summary>
-            You cannot create a field of type Identity. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2014.
+            You cannot create a field of type Identity. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2014.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorIdentityMustBeAGroup">
@@ -3008,7 +3059,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorGroupContainsAADGroupMember">
              <summary>
-             {0} - a TFS group name
+             {0} - an Azure DevOps group name
              {1} - a list of AAD group name, separated by comma
             
              VS237301: The process contains field rule attributes &quot;for&quot; or &quot;not&quot; that reference Azure Active Directory (AAD) groups, which is unsupported. The &apos;{0}&apos; group contains the following AAD groups: {1}
@@ -3054,7 +3105,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.DataImportWhitelistedLinksControlUnknownFilterName">
             <summary>
-            TF201084: The link type filter &apos;{0}&apos; specifies a link type that does not exist on the Team Foundation Server. Specify a valid link type.
+            TF201084: The link type filter &apos;{0}&apos; specifies a link type that does not exist on the Azure DevOps Server. Specify a valid link type.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.WebLayout_ControlNotRecognized">
@@ -3072,6 +3123,29 @@
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorGroupContainsADGroupMember">
             <summary>
             VS237302: The process contains field rule attributes &quot;for&quot; or &quot;not&quot; that reference Active Directory (AD) groups, which is unsupported in data import as these groups will be converted to Azure Active Directory (AAD) groups post data import. The &apos;{0}&apos; group contains the following AD groups: {1}
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.FileDownloadExceededMaxBytes">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.FileDownloadExceededMaxMb">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.ErrorGroupIdentityNotFound">
+            <summary>
+            VS403464: Group cannot be found: {0}. Verify the group used in your work item type definition exists.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.RemoteLinkAddLockedLink">
+            <summary>
+            VS403478: You cannot lock a remote link.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Internals.InternalsResourceStrings.AddRemoteLinkWhenPendingDelete">
+            <summary>
+            VS403479: The remote link &apos;{0}&apos; between work items &apos;{1}&apos; and &apos;{2}&apos; that you are attempting to create is pending delete and cannot be added.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Common.Marker.TraceMarker(Microsoft.TeamFoundation.Common.Mark)">

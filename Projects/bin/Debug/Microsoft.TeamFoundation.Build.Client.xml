@@ -11926,7 +11926,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildAgentFailureException">
             <summary>
-            An error was encountered while Team Foundation server was retrieving the build agent {1} for team project {0}: {2}.
+            An error was encountered while Azure DevOps Server was retrieving the build agent {1} for team project {0}: {2}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildAgentNotFoundException">
@@ -11981,22 +11981,22 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildDefinitionFailureException">
             <summary>
-            TF214001: An error was encountered while Team Foundation server was retrieving the build definition {1} for team project {0}: {2}.
+            TF214001: An error was encountered while Azure DevOps Server was retrieving the build pipeline {1} for team project {0}: {2}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildDefinitionNotFoundException">
             <summary>
-            TF214006: No build definition was found for team project {0} with name {1}.
+            TF214006: No build pipeline was found for team project {0} with name {1}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildDefinitionNotFoundForUriException">
             <summary>
-            TF214008: No build definition was found with the URI {0}. Either the URI does not exist, or {1} does not have permission to access it.
+            TF214008: No build pipeline was found with the URI {0}. Either the URI does not exist, or {1} does not have permission to access it.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildDefinitionSpecNotUniqueException">
             <summary>
-            TF214011: More than one build definition named {1} was found for team project {0}. Specify a build definition without a wildcard character and try again.
+            TF214011: More than one build pipeline named {1} was found for team project {0}. Specify a build pipeline without a wildcard character and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildFailedException">
@@ -12006,7 +12006,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildFailureException">
             <summary>
-            An error was encountered while Team Foundation server was retrieving the build {1} for team project {0}: {2}.
+            An error was encountered while Azure DevOps Server was retrieving the build {1} for team project {0}: {2}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildNotFinishedException">
@@ -12016,7 +12016,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildNotFoundException">
             <summary>
-            TF214005: No build was found with build number {0} for build definition {1}.
+            TF214005: No build was found with build number {0} for build pipeline {1}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildNotFoundForUriException">
@@ -12046,7 +12046,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildSpecNotUniqueException">
             <summary>
-            TF214010: More than one build was found with build number {0} and build definition {1}. Only one build was expected. Specify a build without using a wildcard character and try again.
+            TF214010: More than one build was found with build number {0} and build pipeline {1}. Only one build was expected. Specify a build without using a wildcard character and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.BuildStoppedException">
@@ -12091,7 +12091,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.DeleteOptionsNotSupported">
             <summary>
-            TF214029: The Team Foundation Server you are connected to does not support deleting specific parts of a build (DeleteOptions: &apos;{0}&apos;).
+            TF214029: The Azure DevOps Server you are connected to does not support deleting specific parts of a build (DeleteOptions: &apos;{0}&apos;).
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.FlagsEnumSeparator">
@@ -12101,12 +12101,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.IBuildDetailPropertyNotSupported">
             <summary>
-            TF900550: The Team Foundation Server does not support the property {0} for IBuildDetail.
+            TF900550: The Azure DevOps Server does not support the property {0} for IBuildDetail.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.MethodNotSupported">
             <summary>
-            TF900551: The Team Foundation Server does not support the method {1} for {0}.
+            TF900551: The Azure DevOps Server does not support the method {1} for {0}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.InvalidFinalStatusException">
@@ -12151,12 +12151,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.RetentionPolicyNotSupported">
             <summary>
-            TF214031: The Team Foundation Server does not support retention policies with Reasons other than All (Reason: &apos;{0}&apos;).
+            TF214031: The Azure DevOps Server does not support retention policies with Reasons other than All (Reason: &apos;{0}&apos;).
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.ScheduleLimitExceeded">
             <summary>
-            TF214020: There is already a weekly schedule associated with the build definition {0}. You cannot specify more than one weekly schedule for a build definition.
+            TF214020: There is already a weekly schedule associated with the build pipeline {0}. You cannot specify more than one weekly schedule for a build pipeline.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.StopBuildFailedException">
@@ -12266,7 +12266,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.ReservedUrlPrefix">
             <summary>
-            Reserved URL prefix {0} for account {1}.
+            Reserved URL prefix {0} for organization {1}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.ErrorReservingUrlPrefix">
@@ -12286,7 +12286,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.ErrorAddingServiceUserToGroup">
             <summary>
-            Unable to add build service account &apos;{0}&apos; to Team Foundation Build Services group ({1}).
+            Unable to add build service account &apos;{0}&apos; to Azure DevOps Build Services group ({1}).
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.AddedIdentity">
@@ -12341,7 +12341,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.ServiceHostRegisteredSuccessfully">
             <summary>
-            Successfully registered build service host {0} with Team Foundation Server {1}.
+            Successfully registered build service host {0} with Azure DevOps Server {1}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.ServiceHostUnregisteredSuccessfully">
@@ -12361,7 +12361,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.CannotFreeUrlPrefix">
             <summary>
-            Cannot free url prefix {0} ({1})
+            Cannot free URL prefix {0} ({1})
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.UrlPrefixFreed">
@@ -12371,7 +12371,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.TFSUnavailable">
             <summary>
-            Team Foundation server is unavailable {0}
+            Azure DevOps Server is unavailable {0}
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Build.Client.OMStrings.FirewallExceptionAdding_ErrorServiceNotRunning">

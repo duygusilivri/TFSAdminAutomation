@@ -36,7 +36,7 @@ namespace TaskAgent
             varGroupParam.Name = varGroup.Name;
            
             //change 1 with your variable group id
-            taskagentClient.UpdateVariableGroupAsync(projectName, 1, varGroupParam).GetAwaiter().GetResult();
+            taskagentClient.UpdateVariableGroupAsync(1, varGroupParam).GetAwaiter().GetResult();
 
         }
 

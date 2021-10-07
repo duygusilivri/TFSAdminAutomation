@@ -1577,7 +1577,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Lab.Common.ResourceCommon.UnableToProvisionIntegrationAccountInBuildServiceAccounts(System.Object)">
             <summary>
-            Team Foundation Server is unable to provision the following account in the Build Service Accounts group: &apos;{0}&apos;. Confirm that the group exists and the user credentials provided are valid, and then try the operation again.
+            Azure DevOps Server is unable to provision the following account in the Build Service Accounts group: &apos;{0}&apos;. Confirm that the group exists and the user credentials provided are valid, and then try the operation again.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Lab.Common.ResourceCommon.Error_IPBlock_InvalidInputFormat">

@@ -65,7 +65,7 @@
             Get a list of policy configurations in a project.
             </summary>
             <param name="project">Project ID or project name</param>
-            <param name="scope">The scope on which a subset of policies is applied.</param>
+            <param name="scope">[Provided for legacy reasons] The scope on which a subset of policies is defined.</param>
             <param name="policyType">Filter returned policies to only this type</param>
             <param name="userState"></param>
             <param name="cancellationToken">The cancellation token to cancel operation.</param>
@@ -75,7 +75,7 @@
             Get a list of policy configurations in a project.
             </summary>
             <param name="project">Project ID</param>
-            <param name="scope">The scope on which a subset of policies is applied.</param>
+            <param name="scope">[Provided for legacy reasons] The scope on which a subset of policies is defined.</param>
             <param name="policyType">Filter returned policies to only this type</param>
             <param name="userState"></param>
             <param name="cancellationToken">The cancellation token to cancel operation.</param>
@@ -269,6 +269,11 @@
         <member name="P:Microsoft.TeamFoundation.Policy.WebApi.PolicyConfiguration.Settings">
             <summary>
             The policy configuration settings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.Policy.WebApi.PolicyConfiguration.IsEnterpriseManaged">
+            <summary>
+            If set, this policy requires "Manage Enterprise Policies" permission to create, edit, or delete.
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Policy.WebApi.PolicyConfiguration.Links">

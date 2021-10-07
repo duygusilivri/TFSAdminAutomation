@@ -923,7 +923,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Proxy.ResourceStrings.ErrorBisMiddleTierNotRegistered">
             <summary>
-            TF26176: Could not connect to the specified Team Foundation Server collection URL. Please check the URL and try again.
+            TF26176: Could not connect to the specified Azure DevOps Server collection URL. Please check the URL and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Proxy.ResourceStrings.InvalidRequestId">

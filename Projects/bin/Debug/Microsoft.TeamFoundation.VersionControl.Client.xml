@@ -4608,7 +4608,7 @@
             Given a path, creates a baseline folder structure at that path.
             Example paths:
             @"D:\workspace\$tf"
-            @"C:\ProgramData\TFS\Offline\11c92875-fac4-4277-afba-d16f6eeb2189\ws1;NORTHAMERICA;phkelley"
+            @"C:\ProgramData\TFS\Offline\11c92875-fac4-4277-afba-d16f6eeb2189\ws1;NORTHAMERICA;username"
             </summary>
             <param name="path"></param>
         </member>
@@ -4616,7 +4616,7 @@
             <summary>
             Ensures that the local metadata directory for the given local workspace exists.
             The path looks like:
-            @"C:\ProgramData\TFS\Offline\11c92875-fac4-4277-afba-d16f6eeb2189\ws1;NORTHAMERICA;phkelley"
+            @"C:\ProgramData\TFS\Offline\11c92875-fac4-4277-afba-d16f6eeb2189\ws1;NORTHAMERICA;username"
             
             The method has special logic to place an access control entry on the folder for the
             owner, and to take ownership from BUILTIN\Administrators. (This logic only runs if the
@@ -4628,7 +4628,7 @@
             <summary>
             Ensures that the local metadata directory for the given local workspace exists.
             The path looks like:
-            @"C:\ProgramData\TFS\Offline\11c92875-fac4-4277-afba-d16f6eeb2189\ws1;NORTHAMERICA;phkelley"
+            @"C:\ProgramData\TFS\Offline\11c92875-fac4-4277-afba-d16f6eeb2189\ws1;NORTHAMERICA;username"
             
             The method has special logic to place an access control entry on the folder for the
             owner, and to take ownership from BUILTIN\Administrators. (This logic only runs if the
@@ -4653,7 +4653,7 @@
             
             Example values for baselineFolderRootPath:
             @"D:\workspace\$tf" -- from the instance method GetPathFromGuid immediately above
-            @"C:\ProgramData\TFS\Offline\11c92875-fac4-4277-afba-d16f6eeb2189\ws1;NORTHAMERICA;phkelley"
+            @"C:\ProgramData\TFS\Offline\11c92875-fac4-4277-afba-d16f6eeb2189\ws1;NORTHAMERICA;username"
             </summary>
             <param name="baselineFolderRootPath">Root folder of the baseline folder structure</param>
             <param name="baselineFileGuid">Baseline file GUID whose path should be computed</param>
@@ -4665,7 +4665,7 @@
             
             Example values for baselineFolderRootPath:
             @"D:\workspace\$tf" -- from the instance method GetPathFromGuid immediately above
-            @"C:\ProgramData\TFS\Offline\11c92875-fac4-4277-afba-d16f6eeb2189\ws1;NORTHAMERICA;phkelley"
+            @"C:\ProgramData\TFS\Offline\11c92875-fac4-4277-afba-d16f6eeb2189\ws1;NORTHAMERICA;username"
             </summary>
             <param name="baselineFolderRootPath">Root folder of the baseline folder structure</param>
             <param name="baselineFileGuid">Baseline file GUID whose path should be computed</param>
@@ -17145,6 +17145,11 @@
             <summary>
             The type of credentials (Tfs or Default) to use when creating a download request to talk to a
             version control proxy server.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.VersionControl.Client.UploadDownload.DownloadAsyncResult.RetryCount">
+            <summary>
+            Number of retries so far for this download.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.VersionControl.Client.UploadDownload.s_downloadCounter">

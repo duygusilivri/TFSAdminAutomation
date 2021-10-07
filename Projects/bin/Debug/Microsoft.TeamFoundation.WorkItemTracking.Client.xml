@@ -3678,6 +3678,848 @@
             </summary>
             <param name="store">Target work item store</param>
         </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider">
+            <summary>
+            Represents a data provider for project metadata, like fields, types, categories, state colors, etc.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider.GetWorkItemTypes(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference)">
+            <summary>
+            Gets a dictionary of work item types per type name for the specified project.
+            </summary>
+            <param name="project">project to get data for.</param>
+            <returns>Read only dictionary of type name to Work Item Type object.</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider.GetWorkItemTypeCategories(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference)">
+            <summary>
+            Gets a collection of work item type categories for the specified project.
+            </summary>
+            <param name="project">project to get data for.</param>
+            <returns>Read only collection of work item type category objects</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider.GetFields(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference)">
+            <summary>
+            Gets a dictionary of work item fields per field name or field reference name for the specified project.
+            </summary>
+            <param name="project">project to get data for.</param>
+            <returns>Read only dictionary of Work Item Type object per field name or field reference name.</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider.GetIcons(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference,System.Collections.Generic.IEnumerable{Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItemType})">
+            <summary>
+            Gets a dictionary of work item icons in xaml format per work item type name for the specified work item types.
+            </summary>
+            <param name="project">project to get data for.</param>
+            <param name="types">List of work item type objects to get icons for.</param>
+            <returns>Read only dictionary of work item icons in xaml format per work item type name.</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider.GetTeamProject(System.Guid)">
+            <summary>
+            Gets team project info for the specified project.
+            </summary>
+            <param name="projectId">Id of the project to get data for.</param>
+            <returns><see cref="T:Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference"/> object.</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider.GetTeamProject(System.String)">
+            <summary>
+            Gets team project info for the specified project.
+            </summary>
+            <param name="projectName">Name of a project to get data for.</param>
+            <returns><see cref="T:Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference"/> object.</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider.GetProcessType(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference)">
+            <summary>
+            Retrieves the current process type for the project
+            </summary>
+            <param name="project">project to get data for.</param>
+            <returns>The type of the process associated witht he team project</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider.GetDefaultColor">
+            <summary>
+            Gets a default color for a project
+            </summary>
+            <returns>Default color</returns>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider.IsObsolete">
+            <summary>
+            Returns 'true' if the provider is obsolete and cannot return valid data, 'false' otherwise.
+            </summary>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataRestProvider">
+            <summary>
+            Represents a data provider for project metadata based on the WIT REST API.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataRestProvider.GetWorkItemTypes(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataRestProvider.GetWorkItemTypeCategories(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataRestProvider.GetFields(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataRestProvider.GetIcons(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference,System.Collections.Generic.IEnumerable{Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItemType})">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataRestProvider.IsObsolete">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService">
+            <summary>
+            Represents a service that retrieves and caches project metadata for team projects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.SettingsService_SettingChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handle the setting for using the 'soap' api changing
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.GetAsync(System.Guid)">
+            <summary>
+            Gets the <see cref="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata"/> object for the specified team project.
+            Retrieves it from cache if it's available, initializes it <b>asynchronously</b> if it does not.
+            
+            Once retrieved, it will not make any additional round trips to the server unless it is removed
+            from the cache by calling <see cref="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Clear(System.Guid)"/> or <see cref="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Clear"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Get(System.Guid)">
+            <summary>
+            Gets the <see cref="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata"/> object for the specified team project.
+            Retrieves it from cache if it's available, initializes it <b>synchronously</b> if it does not.
+            
+            Once retrieved, it will not make any additional round trips to the server unless it is removed
+            from the cache by calling <see cref="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Clear(System.Guid)"/> or <see cref="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Clear"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Get(System.String)">
+            <summary>
+            Gets the <see cref="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata"/> object for the specified team project.
+            Retrieves it from cache if it's available, initializes it <b>synchronously</b> if it does not.
+            
+            Once retrieved, it will not make any additional round trips to the server unless it is removed
+            from the cache by calling <see cref="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Clear(System.String)"/> or <see cref="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Clear"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Has(System.Guid)">
+            <summary>
+            Returns 'true' if the cache already contains metadata for the specified project, false otherwise.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Has(System.String)">
+            <summary>
+            Returns 'true' if the cache already contains metadata for the specified project, false otherwise.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Clear(System.Guid)">
+            <summary>
+            Removes metadata for the specified project.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Clear(System.String)">
+            <summary>
+            Removes metadata for the specified project.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.Clear">
+            <summary>
+            Removes metadata for all projects in the specified collection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataService.CanUseRestApi">
+            <summary>
+            Returns 'true' if the rest apis we require exist, false otherwise.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataSoapProvider.GetWorkItemTypes(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataSoapProvider.GetWorkItemTypeCategories(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataSoapProvider.GetFields(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataSoapProvider.GetIcons(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference,System.Collections.Generic.IEnumerable{Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.WorkItemType})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataSoapProvider.GetStateCatergoriesAndColors(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference,Microsoft.TeamFoundation.ProcessConfiguration.Client.ProjectProcessConfiguration)">
+            <summary>
+            Returns Dictionary of work item type -> states list
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataSoapProvider.GetDefaultColor">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataSoapProvider.IsObsolete">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataSoapProvider.GetAllCategoryConfigurationsWithStates(Microsoft.TeamFoundation.ProcessConfiguration.Client.ProjectProcessConfiguration)">
+            <summary>
+            Helper method to get all categories from the process xml.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadataSoapProvider.CreateTransitions(Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemType)">
+            <summary>
+            Create state transitions object
+            </summary>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata">
+            <summary>
+            Simple metadata class which retrieves and caches metadata for team projects.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.TeamProject">
+            <summary>
+            Team project this metadata provider is associated with.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.TypeCategories">
+            <summary>
+            The set of work item type categories in the team project.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.WorkItemTypes">
+            <summary>
+            The set of work item types in the project
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.Fields">
+            <summary>
+            Dictionary of workItemType name => the set of work item fields.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.Icons">
+            <summary>
+            Dictionary of workItemType name => xaml icon string
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.ProjectId">
+            <summary>
+            The team project id
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.ProjectName">
+            <summary>
+            The team project name
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.DefaultStateColor">
+            <summary>
+            The default state color (color used if no color is defined for a state).
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.IsObsolete">
+            <summary>
+            Returns 'true' if the data provider is obsolete and cannot return valid data, 'false' otherwise.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.#ctor">
+            <summary>
+            For testing purposes only.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.#ctor(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="project"></param>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.Create(Microsoft.TeamFoundation.Core.WebApi.TeamProjectReference,Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider)">
+            <summary>
+            Creates and asynchronously initializes the project metadata object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.Initialize(Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IProjectMetadataProvider)">
+            <summary>
+            Initialize all of the metadata using the metadata provider.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.IsDoneState(System.String,System.String)">
+            <summary>
+            Given a work item type name and a state name returns 'true' if the state is a 'done' state, false otherwise.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetDoneStates(System.String)">
+            <summary>
+            Gets the set of done states for a work item type.  Should only be one at the time of this writing, but
+            that may change.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetStatesByCategory(System.String,Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemStateCategory)">
+            <summary>
+            Returns a list of states in the specified category.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetStateCategory(System.String,System.String)">
+            <summary>
+            Retrieves a state category from a work item type/state pair.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetStateInfo(System.String)">
+            <summary>
+            Gets the state info for the specified work item type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetStateInfo(System.String,System.String)">
+            <summary>
+            Gets the state info for the specified work item type and state.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetStateColor(System.String,System.String)">
+            <summary>
+            Gets the state color for the specified work item type/state.  Returns 'null' if the color cannot be found.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetStateTransitions(System.String,System.String)">
+            <summary>
+            Get the set of valid state transitions from the specified state (sorted).
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetWorkItemTypes">
+            <summary>
+            Gets a dictionary of work item types per type name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetWorkItemType(System.String)">
+            <summary>
+            Gets a work item type object for the specified work item type name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetWorkItemTypeNames">
+            <summary>
+            Gets the set of work item type names.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetWorkItemTypeNames(System.String)">
+            <summary>
+            Gets the set of work item type names in a category.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.IsTypeInCategory(System.String,System.String)">
+            <summary>
+            Returns 'true' if the specified work item type name is contained in the specified category
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetDefaultTypeNameFromCategory(System.String)">
+            <summary>
+            Gets the default work item type name in the category.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetWorkItemTypeCategory(System.String)">
+            <summary>
+            Gets a WorkItemTypeCategory object given a category reference name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetWorkItemTypeCategories">
+            <summary>
+            Gets a the set of work item type categories.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetField(System.String)">
+            <summary>
+            Returns a field based on the field's name or reference name. Returns null if the field does not exist.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetFields">
+            <summary>
+            Gets a dictionary of fields where the field's name or reference name is a key. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.ProjectMetadata.GetIcons">
+            <summary>
+            Gets a dictionary of work item type xaml icons where the work item type name is the key. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemQueryHierarchyService">
+            <summary>
+            Interface for supported operations on the WorkItemQueryHierarchyService
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemQueryHierarchyService.GetRootItems(System.Guid)">
+            <summary>
+            Gets the set of items at the root of the heirarchy for the specified project
+            </summary>
+            <param name="projectId">Guid of the project</param>
+            <returns>The set of root QueryHierarchyItem objects for the specified project</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemQueryHierarchyService.GetChildren(System.Guid,System.Guid)">
+            <summary>
+            Gets the children of the specified query folder id
+            </summary>
+            <param name="projectId">Guid of the project</param>
+            <param name="queryFolderId">Guid of the parent folder</param>
+            <returns>The set of QueryHierarchyItem objects directly contained by the specified folder.</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemQueryHierarchyService.GetQueryItems(System.Guid,System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Gets the specified query items
+            </summary>
+            <param name="projectId">Guid of the project</param>
+            <param name="ids">The set of query hierarchy items to retrieve</param>
+            <returns>The set of QueryHierarchyItem objects with the specified ids, if they can be found.</returns>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestQueryHierarchyService">
+            <summary>
+            Rest based implementation of IWorkItemQueryHierarchyService
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestQueryHierarchyService.Collection">
+            <summary>
+            Team project collection associated with this service
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestQueryHierarchyService.GetRootItems(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestQueryHierarchyService.GetChildren(System.Guid,System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestQueryHierarchyService.GetQueryItems(System.Guid,System.Collections.Generic.IEnumerable{System.Guid})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestQueryHierarchyService.FilterProperties(System.Collections.Generic.IEnumerable{Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.QueryHierarchyItem})">
+            <summary>
+            Filter the properties for a collection of query hierarcy items.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestQueryHierarchyService.FilterProperties(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.QueryHierarchyItem)">
+            <summary>
+            Filter down the returned data so it matches what we can support in the 'Soap' provider.  We do not want
+            users of this api taking dependencies on properties that will only be set on the 'rest' side of things.
+            </summary>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapQueryHierarchyService">
+            <summary>
+            WIT OM based implementation of IWorkItemQueryHierarchyService.  This will generally use Soap under the covers since
+            the check for whether to use this one or the rest one is essentially the same as the check used in QueryHierarchy2,
+            so we won't choose to use this provider unless the server really doesn't support the rest version.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapQueryHierarchyService.Collection">
+            <summary>
+            Team project collection associated with this service
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapQueryHierarchyService.GetRootItems(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapQueryHierarchyService.GetChildren(System.Guid,System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapQueryHierarchyService.GetQueryItems(System.Guid,System.Collections.Generic.IEnumerable{System.Guid})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapQueryHierarchyService.GetHierarchy(System.Guid)">
+            <summary>
+            Helper to get the WIT OM query hierarchy object
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapQueryHierarchyService.ConvertToQueryHierarchyItem(Microsoft.TeamFoundation.WorkItemTracking.Client.QueryItem2)">
+            <summary>
+            Helper to convert query items from the WIT OM to QueryHierarchyItem objects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapQueryHierarchyService.ConvertQueryType(System.Nullable{Microsoft.TeamFoundation.WorkItemTracking.Client.QueryType})">
+            <summary>
+            Converts the query type from a WIT OM representation to a QueryHierarchyItem (Rest api) representation
+            </summary>
+            <param name="queryType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemQueryHierarchyService">
+            <summary>
+            Service for retrieving work item query hierarchy items.  Works with either Soap or Rest depending on what is supported by the server.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemQueryHierarchyService.Collection">
+            <summary>
+            Team project collection associated with this service
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemQueryHierarchyService.RestApiSupported">
+            <summary>
+            Whether or not the rest api is supported on this Team Project Collection
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemQueryHierarchyService.GetRootItems(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemQueryHierarchyService.GetChildren(System.Guid,System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemQueryHierarchyService.GetQueryItems(System.Guid,System.Collections.Generic.IEnumerable{System.Guid})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemQueryHierarchyService.GetProvider">
+            <summary>
+            Get the provider (soap or rest) based on whether or not the rest api is availble for use.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemQueryHierarchyService.UseRestApi">
+            <summary>
+            Determines whether or not to use the Rest api or Soap api
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.SoapClientResultCollectionAdapter.#ctor(Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemCollection,System.Nullable{System.Int32})">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.SoapClientResultCollectionAdapter.Ids">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.SoapClientResultCollectionAdapter.GetItem(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultCollection">
+            <summary>
+            Represents a wrapper collection objects that abstracts work item retrieval and paging functionality.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultCollection.Count">
+            <summary>
+            Get the total number of work items in the collection
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultCollection.Ids">
+            <summary>
+            Get the set of work item ids in the collection
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultCollection.GetItem(System.Int32)">
+            <summary>
+            Gets an item from the result set of the query.  If the item is already paged in it will simply return
+            it, otherwise it will fetch the data.  Paging occurs in 200 work item sections
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultExt">
+            <summary>
+            Extensibility interface for Query Result section on the Work Items page.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultExt.SelectedWorkItemIds">
+            <summary>
+            Returns the set of selected work item ids
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultExt.WorkItemIds">
+            <summary>
+            Returns the set of all work item ids in the view
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultExt.AssignToCurrentUser(System.Int32)">
+            <summary>
+            Assign the specified work item to the current user.  Work item must come from the the 'WorkItems' or 'SelectedWorkItems' collections.
+            Work item must be one that exists in the result set.
+            </summary>
+            <param name="id">Id of the work item to assign</param>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultExt.TransitionToStateCategory(System.Int32,Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemStateCategory)">
+            <summary>
+            Change the state of the work item to the first state in the specified state category.  
+            Work item must be one that exists in the result set.
+            </summary>
+            <param name="id">Id of the work item to transition</param>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultExt.SetFieldValue(System.Int32,System.String,System.Object)">
+            <summary>
+            Sets the current value of the specified field.
+            </summary>
+            <param name="id">Id of the work item</param>
+            <param name="referenceName">Reference name of the field</param>
+            <param name="value">Value of the field</param>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultExt.GetFieldValue(System.Int32,System.String)">
+            <summary>
+            Retrieves the current value of the specified field
+            </summary>
+            <param name="id">Id of the work item</param>
+            <param name="referenceName">Reference name of the field</param>
+            <returns>Current value of the field</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultExt.Save(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Save pending changes made to the specified work items.
+            Work items must be exist in the 'WorkItemIds' collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.RestResultCollectionAdapter.Count">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.RestResultCollectionAdapter.Ids">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.RestResultCollectionAdapter.GetItem(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.RestResultCollectionAdapter.GetNextPage(System.Int32)">
+            <summary>
+            Get a page of data which includes the work item at the specified index.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.RestResultCollectionAdapter.TryAdd(System.Collections.Generic.List{System.Int32},System.Int32,System.Int32@)">
+            <summary>
+            Add the specified id to the list iff the id has not already been paged AND adding it will
+            not exceed the maximum url length
+            </summary>
+            <param name="list">List to add the work item id to</param>
+            <param name="id">Id to conditionally add</param>
+            <param name="curLen">The current length of the url</param>
+            <returns>true if the url length has not been exceeded, false otherwise</returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.RestResultCollectionAdapter.PageItems(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Page in the specified work item ids.
+            </summary>
+            <param name="ids"></param>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.PreferSoapSettingService">
+            <summary>
+            Stores and retrieves the setting to indicate if SOAP usage is preferred over REST
+            </summary>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IXamlIconCache">
+            <summary>
+            Interface defining operations on the icon cache.  Used for testing purposes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IXamlIconCache.Get(Microsoft.TeamFoundation.Client.TfsTeamProjectCollection,System.String)">
+            <summary>
+            Retrieves a xaml icon from the cache if it exists and is not expired
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IXamlIconCache.Write(Microsoft.TeamFoundation.Client.TfsTeamProjectCollection,System.String,System.String)">
+            <summary>
+            Writes an icon to the cache
+            </summary>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.XamlIconCache">
+            <summary>
+            Helper functions to facilitate caching xaml icons on disk.  Cache's are
+            based on the TfsTeamProjectCollection and cached files are based on the icon names provided
+            by the server.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.XamlIconCache.CacheFolder">
+            <summary>
+            Subfolder to put the icons in.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.XamlIconCache.expirationTimeoutInDays">
+            <summary>
+            Cache expiration time.  If the icon on disk is older than this many days
+            then it is not returned.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.XamlIconCache.s_instance">
+            <summary>
+            Singleton instance of the cache.
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.XamlIconCache.s_lock">
+            <summary>
+            Lock to ensure only one instance is created.
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.XamlIconCache.Instance">
+            <summary>
+            Retrieve the singleton for the xaml cache.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.XamlIconCache.#ctor">
+            <summary>
+            Private constructor to ensure singleton.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.XamlIconCache.Get(Microsoft.TeamFoundation.Client.TfsTeamProjectCollection,System.String)">
+            <summary>
+            Retrieves a xaml icon from disk if it exists and is not expired
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.XamlIconCache.Write(Microsoft.TeamFoundation.Client.TfsTeamProjectCollection,System.String,System.String)">
+            <summary>
+            Saves an icon to disk
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.XamlColorHelper.GetColorWithContrast(System.String,System.String,System.Double)">
+            <summary>
+            Scale the color so it meets the specified contrast ratio requirement.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.XamlColorHelper.Luminance(System.Int32[])">
+            <summary>
+            Calculates the relative luminance for a color which is a number between 0 and 1 where 0 is black and 1 is white.  
+            See https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+            </summary>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.TypeConverters">
+            <summary>
+            Some static helpers for converting field types to system or WIT Client OM types
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.TypeConverters.GetFieldType(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.FieldType)">
+            <summary>
+            Converts a Rest API based 'field type' to a WIT OM client field type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.TypeConverters.GetFieldSystemType(Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models.FieldType)">
+            <summary>
+            Converts a rest api 'field type' into a system type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.TypeConverters.TranslateStateTypeToString(Microsoft.TeamFoundation.ProcessConfiguration.Client.StateTypeEnum)">
+            <summary>
+            Translates from the xml process types to a string representation compatible with the REST api.
+            </summary>
+            <param name="stateTypeEnum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.TypeConverters.TranslateStateTypeStringToCategory(System.String)">
+            <summary>
+            Translates from the process configuration types to our own enumeration
+            </summary>
+            <param name="stateType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.RestWiqlAdapterHelper">
+            <summary>
+            Wiql adapter based on the REST api.  Only supports a subset of the functionality required for doing work item searches
+            in the client.
+            </summary>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemClientService">
+            <summary>
+            Represents work item client service that provides basic work item related functionality.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemClientService.FlatQuery(System.String,System.String,System.String,System.Nullable{System.Int32},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Executes a flat query and returns result collection.
+            </summary>
+            <param name="projectName">Name of the project to run WIQL for.</param>
+            <param name="teamName">Name of the team to run WIQL for (optional).</param>
+            <param name="wiql">WIQL to execute</param>
+            <param name="top">The max number of records to return.</param>
+            <param name="additionalFields">Additional work item fields to retrieve.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemClientService.GetWorkItem(System.Int32)">
+            <summary>
+            Gets a work item by id.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemClientService.GetResultCollection(System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets a <see cref="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemResultCollection"/> wrapper object for provided set of work item ids.
+            </summary>
+            <param name="ids">Set of work item ids to wrap.</param>
+            <param name="fieldNames">Set of work item fields to pull.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemClientService.SaveWorkItem(System.Guid,Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItem)">
+            <summary>
+            Saves the specified work item.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemClientService.SaveWorkItems(System.Guid,System.Collections.Generic.IEnumerable{Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItem})">
+            <summary>
+            Saves the specified set of work items.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemClientService.CreateWorkItem(System.Guid,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Creates a new work item for the specified type and a dictionary of field values.
+            </summary>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemClientService">
+            <summary>
+            Represents a wrapper service that chooses appropriate implementation
+            of <see cref="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemClientService"/> based on availability of the REST API.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemClientService.FlatQuery(System.String,System.String,System.String,System.Nullable{System.Int32},System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemClientService.GetWorkItem(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemClientService.GetResultCollection(System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemClientService.SaveWorkItem(System.Guid,Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemClientService.SaveWorkItems(System.Guid,System.Collections.Generic.IEnumerable{Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItem})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemClientService.CreateWorkItem(System.Guid,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapClientService">
+            <summary>
+            Implementation of <see cref="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemClientService"/> that uses Extended Client (Client OM).
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapClientService.FlatQuery(System.String,System.String,System.String,System.Nullable{System.Int32},System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapClientService.GetWorkItem(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapClientService.GetResultCollection(System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapClientService.SaveWorkItem(System.Guid,Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemSoapClientService.CreateWorkItem(System.Guid,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestClientService">
+            <summary>
+            Implementation of <see cref="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItemClientService"/> that uses REST API.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestClientService.FlatQuery(System.String,System.String,System.String,System.Nullable{System.Int32},System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestClientService.GetWorkItem(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestClientService.GetResultCollection(System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestClientService.SaveWorkItem(System.Guid,Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.IWorkItem)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemRestClientService.CreateWorkItem(System.Guid,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.FieldChangedEventArgs.#ctor(System.String,System.Object)">
+            <!-- No matching elements were found for the following include tag --><include file="doc\om.uex" path="docs/doc[@for=&quot;WorkItemEventArgs.WorkItemEventArgs&quot;]" />
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.FieldChangedEventArgs.ReferenceName">
+            <!-- No matching elements were found for the following include tag --><include file="doc\om.uex" path="docs/doc[@for=&quot;WorkItemEventArgs.Field&quot;]" />
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.SaveStatusEventArgs.#ctor(Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.SaveEventType,System.Exception)">
+            <!-- No matching elements were found for the following include tag --><include file="doc\om.uex" path="docs/doc[@for=&quot;WorkItemEventArgs.WorkItemEventArgs&quot;]" />
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.SaveStatusEventArgs.EventType">
+            <!-- No matching elements were found for the following include tag --><include file="doc\om.uex" path="docs/doc[@for=&quot;WorkItemEventArgs.Field&quot;]" />
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.SoapWorkItemAdapter">
+            <summary>
+            Work Item adapter for SOAP based work item objects.
+            </summary>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.WorkItemAdapterBase">
+            <summary>
+            Contains common functionality for <see cref="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.RestWorkItemAdapter"/> and <see cref="T:Microsoft.TeamFoundation.WorkItemTracking.Client.SimpleOM.SoapWorkItemAdapter"/>.
+            </summary>
+        </member>
         <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.ListItemComparer">
             <summary>
             Custom comparer for non string field values
@@ -6035,7 +6877,7 @@
 			true only if the item is being initialized as part
 			of the history collection
 		</param>
-	</doc>   
+	</doc>   s
         </member>
         <member name="T:Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemFieldChangeEventHandler">
             <!-- No matching elements were found for the following include tag --><include file="doc\om.uex" path="docs/doc[@for=&quot;WorkItem.WorkItemFieldChangeEventHandler&quot;]" />   
@@ -6444,6 +7286,11 @@
             <param name="newLink">New LinkInfo object</param>
             <returns>True if existing link was successfully removed and </returns>
         </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemLinkData.ComputeParentField(System.Int32)">
+            <summary>
+            Get the 'parent' work item id, if the link exists.
+            </summary>
+        </member>
         <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemLinkData.UpdatedLinks">
             <summary>
             Gets the list of updated links.
@@ -6673,7 +7520,7 @@
 				specified team system server.
 			</para>
 		</summary>
-		<param name="teamSystemName">The Team Foundation server name</param>
+		<param name="teamSystemName">The Azure DevOps Server name</param>
 	</doc> 
         </member>
         <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemStore.#ctor">
@@ -6695,6 +7542,20 @@
 			<para>Current time zone</para>
 		</summary>
 	</doc> 
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemStore.IsObsolete">
+            <summary>
+            Indicates if the server that the OM is connected to supports the WorkItemStore.
+            If 'false', then the server does not support the WorkItemStore and clients should use the REST api instead
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemStore.ObsoleteDate">
+            <summary>
+            The UTC date/time when the WorkItemStore will no longer be supported by the connected server.
+            Will be null if 'IsObsolete' is (already obsolete), or if the server does not provide this information 
+            (meaning that the server itself will not stop sending data to the clients unless it is upgraded to a server
+            version which doesn't support metadata).
+            </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemStore.Query(System.String)">
             <!-- No matching elements were found for the following include tag --><include file="doc\om.uex" path="docs/doc[@for=&quot;WorkItemStore.Query(string)&quot;]" /> 
@@ -7012,7 +7873,7 @@
             </summary>
             <remarks>
             As of TFS 2015 Identity fields in the WIT ClientOM ensure that identity values are always read/written uniquely.
-            When you read from an identity field and that user’s display name is unique you will get the display name returned:
+            When you read from an identity field and that user's display name is unique you will get the display name returned:
             
             <code>
                     var workItemStore = teamProjectCollection.GetService();
@@ -7029,7 +7890,7 @@
             </code>
              
             The ClientOM tries to only show the combo-string when needed.However, it also requires the correct value when assigning an identity field. 
-            So, if you’re assigning a value to an identity field, you need to make sure you pass the proper value.Fortunately, there is a helper function to make this easy calledGetValidDisplayName. 
+            So, if you're assigning a value to an identity field, you need to make sure you pass the proper value.Fortunately, there is a helper function to make this easy calledGetValidDisplayName. 
             This method has two overloads, one takes a TeamFoundationIdentity object and the other takes a DisplayName and UniqueName.
             
             Before assigning to an identity field you should call this method to ensure you are getting the right value to assign to.
@@ -7064,7 +7925,7 @@
             </summary>
             <remarks>
             As of TFS 2015 Identity fields in the WIT ClientOM ensure that identity values are always read/written uniquely.
-            When you read from an identity field and that user’s display name is unique you will get the display name returned:
+            When you read from an identity field and that user's display name is unique you will get the display name returned:
             
             <code>
                     var workItemStore = teamProjectCollection.GetService();
@@ -7082,7 +7943,7 @@
              
             The ClientOM tries to only show the combo-string when needed.
             However, it also requires the correct value when assigning an identity field.
-            So, if you’re assigning a value to an identity field, you need to make sure you pass the proper value.
+            So, if you're assigning a value to an identity field, you need to make sure you pass the proper value.
             Fortunately, there is a helper function to make this easy calledGetValidDisplayName. This method has two overloads, one takes a TeamFoundationIdentity object and the other takes a DisplayName and UniqueName.
             
             Before assigning to an identity field you should call this method to ensure you are getting the right value to assign to.
@@ -7136,7 +7997,7 @@
             Get list of TFS Global and Project groups
             </summary>
             <param name="projectId">Project for which group information needs to be retrieved</param>
-            <returns>List of TFS Global and Project groups in a dictionary format, where DisplayName(In a unique format) 
+            <returns>List of TFS Global and Project groups in a dictionary format, where DisplayName(In a unique format)
             is the key and Sid is the value.
             </returns>
         </member>
@@ -7197,6 +8058,11 @@
 		<param name="action" />
 		<returns>next state</returns>
 	</doc>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemType.GetStateTransitions">
+            <summary>
+            Retrieves all possible state transitions for this work item type.
+            </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemType.NewWorkItem">
             <doc for="WorkItemType.NewWorkItem">
@@ -7333,7 +8199,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorCoreServicesAttributeNotFound">
             <summary>
-            TF26175: Team Foundation Core Services attribute &apos;{0}&apos; not found.
+            TF26175: Azure DevOps Core Services attribute &apos;{0}&apos; not found.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorInvalidOnParameterizedQuery">
@@ -7343,7 +8209,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorCoreServicesMiddleTierNotRegistered">
             <summary>
-            TF26176: Could not connect to the specified Team Foundation Server collection URL. Please check the URL and try again.
+            TF26176: Could not connect to the specified Azure DevOps Server collection URL. Please check the URL and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorNodeNotExist">
@@ -7353,12 +8219,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorCannotFindNodeFromId">
             <summary>
-            TF26006: Team Foundation could not find {0}.
+            TF26006: Azure DevOps Server could not find {0}.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorCouldNotConnect">
             <summary>
-            TF26012: Cannot connect to Team Foundation Server.
+            TF26012: Cannot connect to Azure DevOps Server.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorDeniedOrNotExist">
@@ -7468,12 +8334,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorRelatedLinkToSelf">
             <summary>
-            TF26196: Team Foundation does not support relating a work item to itself. Select a different related work item.
+            TF26196: Azure DevOps Server does not support relating a work item to itself. Select a different related work item.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorWorkItemStoreAlreadyConnected">
             <summary>
-            TF26199: Cannot connect to a different server for a work item store that has successfully connected to a Team Foundation Server
+            TF26199: Cannot connect to a different server for a work item store that has successfully connected to an Azure DevOps Server
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorWorkItemTypeNotExist">
@@ -7568,17 +8434,17 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorCannotSortBy">
             <summary>
-            TF26009: Team Foundation does not support sorting by this field.
+            TF26009: Azure DevOps Server does not support sorting by this field.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorLinkCommentTooLong">
             <summary>
-            TF26079: Team Foundation does not support link comments over {0} characters long. Shorten the comment and try again.
+            TF26079: Azure DevOps Server does not support link comments over {0} characters long. Shorten the comment and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorLinkLocationTooLong">
             <summary>
-            TF26185: Team Foundation does not support link paths over {0} characters long. Shorten the link path and try again.
+            TF26185: Azure DevOps Server does not support link paths over {0} characters long. Shorten the link path and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorHistory">
@@ -7698,12 +8564,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorAttachmentFileNotFound">
             <summary>
-            TF26003: Team Foundation could not find the file. Check the file name and path and try again.
+            TF26003: Azure DevOps Server could not find the file. Check the file name and path and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorAttachmentCommentTooLong">
             <summary>
-            TF26002: Team Foundation does not support comments over {0} characters long. Shorten your comment and try again.
+            TF26002: Azure DevOps Server does not support comments over {0} characters long. Shorten your comment and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorAttachmentAlreadyExists">
@@ -7736,7 +8602,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.QueryDescriptionTooLong">
             <summary>
-            TF26163: Team Foundation does not support query descriptions over {0} characters long. Shorten the description and try again.
+            TF26163: Azure DevOps Server does not support query descriptions over {0} characters long. Shorten the description and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.TagFormatCreate">
@@ -7825,7 +8691,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorFieldNotQueryable">
             <summary>
-            TF26036: Team Foundation does not support querying on this field &apos;{0}&apos;. Change your query and try again.
+            TF26036: Azure DevOps Server does not support querying on this field &apos;{0}&apos;. Change your query and try again.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorUserNotFoundForSid">
@@ -7835,7 +8701,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorServerRejectedChangesException">
             <summary>
-            TF26212: Team Foundation Server could not save your changes. There may be problems with the work item type definition, or a conflicting work item type definition change may require a refresh on your client. Restart your client application and try again, or contact your Team Foundation Server administrator.
+            TF26212: Azure DevOps Server could not save your changes. There may be problems with the work item type definition, or a conflicting work item type definition change may require a refresh on your client. Restart your client application and try again, or contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorOrphanedItem">
@@ -7865,22 +8731,22 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.WebExceptionConnectFailed">
             <summary>
-            TF26173: Team Foundation could not connect to the application tier. Check that you have a network connection and that the Team Foundation Server is available. If the problem persists, contact your Team Foundation Server administrator.
+            TF26173: Azure DevOps Server could not connect to the application tier. Check that you have a network connection and that the Azure DevOps Server is available. If the problem persists, contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.WebExceptionCouldNotReachServer">
             <summary>
-            TF26173: Team Foundation could not connect to the application tier. Check that you have a network connection and that the Team Foundation Server is available. If the problem persists, contact your Team Foundation Server administrator.
+            TF26173: Azure DevOps Server could not connect to the application tier. Check that you have a network connection and that the Azure DevOps Server is available. If the problem persists, contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.CouldNotReachServer">
             <summary>
-            TF26000: Could not connect to the Team Foundation Server. Check that you have a network connection and that your Team Foundation server is available.
+            TF26000: Could not connect to the Azure DevOps Server. Check that you have a network connection and that your Azure DevOps Server is available.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.WebExceptionTimeout">
             <summary>
-            TF26174: Team Foundation timed out trying to connect to the server. Check that you have a network connection and that the Team Foundation Server is available. If the problem persists, contact your Team Foundation Server administrator.
+            TF26174: Azure DevOps Server timed out trying to connect to the server. Check that you have a network connection and that the Azure DevOps Server is available. If the problem persists, contact your Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.BackEndArgumentException">
@@ -7965,7 +8831,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorAttachmentUploadFailed">
             <summary>
-            TF237082: The attachment could not be uploaded. Verify that you have a network connection and that Team Foundation Server is available. If the problem persists, provide the following information to the server administrator. The server returned the following message: {0}
+            TF237082: The attachment could not be uploaded. Verify that you have a network connection and that Azure DevOps Server is available. If the problem persists, provide the following information to the server administrator. The server returned the following message: {0}
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorTwoWidthElements">
@@ -8265,12 +9131,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.QueryHierarchyServerDoesNotSupportFolders">
             <summary>
-            TF237005: You cannot create a query folder with this version of Team Foundation Server. Upgrade to a newer version of Team Foundation Server in order to create query folders.
+            TF237005: You cannot create a query folder with this version of Azure DevOps Server. Upgrade to a newer version of Azure DevOps Server in order to create query folders.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.QueryHierarchyServerDoesNotSupportPermissions">
             <summary>
-            TF237199: You cannot set query or query folder permissions with this version of Team Foundation Server. Upgrade to a newer version of Team Foundation Server in order to set permissions.
+            TF237199: You cannot set query or query folder permissions with this version of Azure DevOps Server. Upgrade to a newer version of Azure DevOps Server in order to set permissions.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.QueryHierarchyCannotAddParentAsChild">
@@ -8410,7 +9276,7 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorFieldReportabilityChange">
             <summary>
-            TF201078: You are trying to import a type of work item that uses the field &apos;{0}&apos;. Your definition of the field includes a reportable setting that differs from the setting for that field in the database for Team Foundation Server. To change the database setting, you must log on as a member of the Project Collection Administrators group. To import the type of work item without changing the database setting, you must remove the setting from your definition of the field, or you must change that setting to match the database.
+            TF201078: You are trying to import a type of work item that uses the field &apos;{0}&apos;. Your definition of the field includes a reportable setting that differs from the setting for that field in the database for Azure DevOps Server. To change the database setting, you must log on as a member of the Project Collection Administrators group. To import the type of work item without changing the database setting, you must remove the setting from your definition of the field, or you must change that setting to match the database.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorFieldIndexingInvalidType">
@@ -8430,22 +9296,22 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorGuidFieldsNotSupported">
             <summary>
-            TF248005: You cannot create a field of the GUID. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2010.
+            TF248005: You cannot create a field of the GUID. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorBoolFieldsNotSupported">
             <summary>
-            TF248006: You cannot create a field of the Boolean type. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2010.
+            TF248006: You cannot create a field of the Boolean type. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorRevisionQueriesNotSupported">
             <summary>
-            TF248008: You cannot run a query for revisions. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2010.
+            TF248008: You cannot run a query for revisions. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorLinkLockingNotSupported">
             <summary>
-            TF248010: You cannot lock a link between work items. Either this feature is not enabled on this server, or it is running a version of Team Foundation Server that is earlier than Team Foundation Server 2010.
+            TF248010: You cannot lock a link between work items. Either this feature is not enabled on this server, or the server version is earlier than Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorComputedFieldInRevisionQuery">
@@ -8455,12 +9321,12 @@
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorDifferentProjectsInBatchSave">
             <summary>
-            TF248011: You cannot save work items to more than one project in a single operation. Either this feature is not enabled on one of the servers, or it is running a version of Team Foundation Server that is earlier than Visual Studio Team Foundation Server 2010.
+            TF248011: You cannot save work items to more than one project in a single operation. Either this feature is not enabled on one of the servers, or the server version is earlier than Visual Studio Team Foundation Server 2010.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorFullTextService">
             <summary>
-            TF248015: Your work item query could not be completed due to an unexpected error returned by the Microsoft SQL Server Full-text engine. Contact your system administrator to check the Application event log for Team Foundation Server.
+            TF248015: Your work item query could not be completed due to an unexpected error returned by the Microsoft SQL Server Full-text engine. Contact your system administrator to check the Application event log for Azure DevOps Server.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorRenameSafeChanged">
@@ -8494,7 +9360,7 @@
              <summary>
              {0} Full path to file, {1} The field which contains the file that failed to upload, {2} The error message that was returned from the server
             
-             TF602213: The image, &apos;{0}&apos;, inserted in the &apos;{1}&apos; field could not be uploaded. Verify that you have a network connection and that Team Foundation Server is available. If the problem persists, provide the following information to the server administrator. The server returned the following message: {2}
+             TF602213: The image, &apos;{0}&apos;, inserted in the &apos;{1}&apos; field could not be uploaded. Verify that you have a network connection and that Azure DevOps Server is available. If the problem persists, provide the following information to the server administrator. The server returned the following message: {2}
              </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.WorkItemTracking.Client.Internal.ResourceStrings.ErrorDeleteFieldNoPermission">

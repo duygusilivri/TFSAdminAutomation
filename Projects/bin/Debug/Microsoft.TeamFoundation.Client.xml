@@ -3372,6 +3372,26 @@
             converting strings to option IDs and styles.
             </summary>
         </member>
+        <member name="T:Microsoft.TeamFoundation.Client.CommandLine.Options.ProcessModel">
+            <summary>
+            Work item process inheritance model for collections
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.Client.CommandLine.Options.ProcessModel.Xml">
+            <summary>
+            Customization based on legacy project-scoped xml customization
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.Client.CommandLine.Options.ProcessModel.Inheritance">
+            <summary>
+            Customization based on process inheritance
+            </summary>
+        </member>
+        <member name="F:Microsoft.TeamFoundation.Client.CommandLine.Options.ID.ProcessModel">
+            <summary>
+            The ProcessModel flag supplied as a optional parameter for collection create
+            </summary>
+        </member>
         <member name="M:Microsoft.TeamFoundation.Client.CommandLine.Options.MatchesValue(System.String,Microsoft.TeamFoundation.Client.CommandLine.Options.Value)">
             <summary>
             Tests (case insensitive) to see if the input value matches the specified option value.
@@ -6460,6 +6480,9 @@
             Landing page for learning more about VSTS
             </summary>
         </member>
+        <member name="F:Microsoft.TeamFoundation.Client.ExternalHelpLinks.SqlServerReporting">
+            WIT Process customization links
+        </member>
         <member name="M:Microsoft.TeamFoundation.Client.ExternalHelpLinks.GetUri(System.Int32)">
             <summary>
             Retrieves the URI for a fwlink given the link id.
@@ -6621,6 +6644,19 @@
             <summary>
             return whether or not the action has already been canceled
             </summary>
+        </member>
+        <member name="T:Microsoft.TeamFoundation.Client.IdentityManagement.QueryTokenResult">
+            <summary>
+            Model to represent an Identity Picker QueryTokenResult
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Client.IdentityManagement.IdentityPickerHttpClient.GetIdentitiesAsync(Microsoft.TeamFoundation.Client.IdentityManagement.IdentitiesSearchRequestModel,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            [Preview API]
+            </summary>
+            <param name="identitiesRequest"></param>
+            <param name="userState"></param>
+            <param name="cancellationToken">The cancellation token to cancel operation.</param>
         </member>
         <member name="T:Microsoft.TeamFoundation.Client.InformationBar">
             <summary>
@@ -7125,7 +7161,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ExceptionCaption">
             <summary>
-            Team Foundation Error
+            Azure DevOps Error
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ExitCode(System.Object)">
@@ -7170,7 +7206,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.NoRootFolder">
             <summary>
-            TF30075: Team Foundation could not find the specified root folder or the folder is missing.
+            TF30075: Azure DevOps could not find the specified root folder or the folder is missing.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.PressEnterKey">
@@ -7200,17 +7236,17 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.StandardErrorDlgTitle">
             <summary>
-            Team Foundation Error
+            Azure DevOps Error
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ThreadingMustBeSTA">
             <summary>
-            TF249049: Team Foundation Server could not open the dialog because the threading model must be single-threaded apartment.
+            TF249049: Azure DevOps Server could not open the dialog because the threading model must be single-threaded apartment.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.UICredProvider_MessageText">
             <summary>
-            Please provide credentials to connect to Team Foundation Server.
+            Please provide credentials to connect to Azure DevOps Server.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.UICredProvider_TitleText(System.Object)">
@@ -7309,7 +7345,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.TfsConnectDialogSelectServerToViewCollections">
             <summary>
-            Select a Team Foundation Server to view Team Project Collections
+            Select an Azure DevOps Server to view Team Project Collections
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.TfsConnectDialogSelectCollectionToViewProjects">
@@ -7344,22 +7380,22 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.DomainNameAlreadyExists(System.Object)">
             <summary>
-            Team Foundation Server &apos;{0}&apos; already exists.
+            Azure DevOps Server &apos;{0}&apos; already exists.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.DomainNameAlreadyExistsTitle">
             <summary>
-            Team Foundation Server Exists
+            Azure DevOps Server Exists
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.RemoveServer(System.Object)">
             <summary>
-            Do you want to remove Team Foundation Server &apos;{0}&apos;?
+            Do you want to remove Azure DevOps Server &apos;{0}&apos;?
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.RemoveServerTitle">
             <summary>
-            Remove Team Foundation Server
+            Remove Azure DevOps Server
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ServerNameEmpty">
@@ -7381,42 +7417,42 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ConnectToTfs_NoPermission(System.Object,System.Object)">
             <summary>
-            TF31003: Either you have not entered the necessary credentials or your user account does not have permission to connect to the Team Foundation Server at {0}. Ask your server administrator to add the appropriate permissions to your account.    The following error was encountered: {1}
+            TF31003: Either you have not entered the necessary credentials or your user account does not have permission to connect to the Azure DevOps Server at {0}. Ask your server administrator to add the appropriate permissions to your account.    The following error was encountered: {1}
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ConnectToTfs_AccessCheck(System.Object,System.Object)">
             <summary>
-            TF249002: Your user account does not have permission to connect to the Team Foundation Server at {0}. Ask your server administrator to add the appropriate permissions to your account.    The server returned the following error: {1}
+            TF249002: Your user account does not have permission to connect to the Azure DevOps Server at {0}. Ask your server administrator to add the appropriate permissions to your account.    The server returned the following error: {1}
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ConnectToTfs_UnableToConnect(System.Object)">
             <summary>
-            TF31005: Cannot connect to Team Foundation Server at {0}.
+            TF31005: Cannot connect to Azure DevOps Server at {0}.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ConnectToTfs_UnExpected(System.Object)">
             <summary>
-            TF31004: Unexpected error encountered while connecting to Team Foundation Server at {0}. Wait a few minutes and try again. If the problem persists, contact the server administrator
+            TF31004: Unexpected error encountered while connecting to Azure DevOps Server at {0}. Wait a few minutes and try again. If the problem persists, contact the server administrator
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ConnectToTfs_AddServer_UnableToConnect(System.Object,System.Object)">
             <summary>
-            TF31002: Unable to connect to this Team Foundation Server: {0}.Team Foundation Server Url: {1}.  Possible reasons for failure include:- The name, port number, or protocol for the Team Foundation Server is incorrect.- The Team Foundation Server is offline.- The password has expired or is incorrect.For further information, contact the Team Foundation Server administrator.
+            TF31002: Unable to connect to this Azure DevOps Server: {0}.Azure DevOps Server Url: {1}.  Possible reasons for failure include:- The name, port number, or protocol for the Azure DevOps Server is incorrect.- The Azure DevOps Server is offline.- The password has expired or is incorrect.For further information, contact the Azure DevOps Server administrator.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ConnectToTfs_AddServer_UnableToConnect_WithTechnicalInfo(System.Object,System.Object,System.Object)">
             <summary>
-            TF31002: Unable to connect to this Team Foundation Server: {0}.Team Foundation Server Url: {1}.  Possible reasons for failure include:- The name, port number, or protocol for the Team Foundation Server is incorrect.- The Team Foundation Server is offline.- The password has expired or is incorrect.Technical information (for administrator):{2}
+            TF31002: Unable to connect to this Azure DevOps Server: {0}.Azure DevOps Server Url: {1}.  Possible reasons for failure include:- The name, port number, or protocol for the Azure DevOps Server is incorrect.- The Azure DevOps Server is offline.- The password has expired or is incorrect.Technical information (for administrator):{2}
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ConnectToTfs_Unknown(System.Object,System.Object)">
             <summary>
-            TF31001: Cannot connect to Team Foundation Server at {0}. The server returned the following error: {1}
+            TF31001: Cannot connect to Azure DevOps Server at {0}. The server returned the following error: {1}
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ConnectToTfs_TrustFailure(System.Object)">
             <summary>
-            TF30017: Cannot connect to Team Foundation Server at {0}. The security certificate is either not installed, not properly configured, or expired.
+            TF30017: Cannot connect to Azure DevOps Server at {0}. The security certificate is either not installed, not properly configured, or expired.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ConnectDialogImages">
@@ -7486,7 +7522,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.OperationNotSuportedPreFramework">
             <summary>
-            This operation is not supported against Team Foundation Servers released before Visual Studio Team Foundation Server 2010.
+            This operation is not supported against Azure DevOps Servers released before Visual Studio Team Foundation Server 2010.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ServicingOperationConfigDoesNotDefineOperationNameError">
@@ -7596,7 +7632,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.TeamProjectDeleter_EleadNotFound">
             <summary>
-            Warning. Did not find the expected Team Foundation Server Core Service, vstfs.
+            Warning. Did not find the expected Azure DevOps Server Core Service, vstfs.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.TeamProjectDeleter_Failure">
@@ -7606,7 +7642,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.TeamProjectDeleter_ProjectNotFound(System.Object)">
             <summary>
-            The project &apos;{0}&apos; was not found on the Team Foundation Server.
+            The project &apos;{0}&apos; was not found on the Azure DevOps Server.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.TeamProjectDeleter_RosettaNotFound">
@@ -7656,7 +7692,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ToolNames_TeamFoundation">
             <summary>
-            Team Foundation Core
+            Azure DevOps Core
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ToolIdMalformed(System.Object)">
@@ -7722,7 +7758,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.GenericTeamFoundationCaption">
             <summary>
-            Team Foundation Server
+            Azure DevOps Server
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.MicrosoftVisualStudioCaption">
@@ -7819,7 +7855,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.SwitchUserNotSupportedOnPremise">
             <summary>
-            You may only switch your user with a Team Foundation Service account.
+            You may only switch your user with an Azure DevOps Service organization.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.SwitchUserRequiresFederatedAuthentication">
@@ -7834,7 +7870,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ServerNotSupported(System.Object)">
             <summary>
-            You cannot connect to {0} because it is running a version of Team Foundation Server that is not supported by your version of Visual Studio. Upgrade your server to Team Foundation Server 2010 (or a newer version), or use Visual Studio 2010 or Visual Studio 2012.
+            You cannot connect to {0} because it is running a version of Azure DevOps Server that is not supported by your version of Visual Studio. Upgrade your server to Team Foundation Server 2010 (or a newer version), or use Visual Studio 2010 or Visual Studio 2012.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.JobDefinitionPropertiesCannotSet">
@@ -7844,7 +7880,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.InvalidProxyUrl(System.Object)">
             <summary>
-            TF15044: Unable to connect to this Team Foundation Proxy Server: {0}. Possible reasons for failure include: The Team Foundation Proxy Server name, port number or protocol is incorrect; The Team Foundation Proxy Server is offline; Password is expired or incorrect. For further information, contact the Team Foundation Proxy administrator.
+            TF15044: Unable to connect to this Azure DevOps Server Proxy: {0}. Possible reasons for failure include: The Azure DevOps Server Proxy name, port number or protocol is incorrect; The Azure DevOps Server Proxy is offline; Password is expired or incorrect. For further information, contact the Azure DevOps Server Proxy administrator.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.TeamProjectDeleter_OperationCancelledAtTime(System.Object)">
@@ -7874,7 +7910,7 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.TeamProjectDeleter_DeletingFromTfs">
             <summary>
-            Deleting from Team Foundation Server ...
+            Deleting from Azure DevOps Server ...
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.TeamProjectDeleter_OperationHasId(System.Object)">
@@ -7915,6 +7951,23 @@
         <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.TeamProjectDeleter_ProjectNotFoundOnService">
             <summary>
             Not found.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.ProcessModelIsNotCorrect(System.Object)">
+             <summary>
+             {0} - specified process type
+            
+             The process model type {0} is invalid. Please use Inheritance or Xml
+             </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.InternetExplorerNotFound(System.Object)">
+            <summary>
+            Failed to launch URL &quot;{0}&quot;. You can either install a browser and try again or navigate to the URL from a different computer that already has a browser installed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Client.Internal.ClientResources.TeamProjectDeleter_SoftDeleteNotSupported">
+            <summary>
+            Soft delete is not supported for this version of Azure DevOps Server. Please hard delete instead using the /harddelete parameter.
             </summary>
         </member>
         <member name="F:Microsoft.TeamFoundation.Client.NotificationManager.MessageInfo.deliverInModalDialogState">
@@ -8079,7 +8132,7 @@
             <summary>
             Checks whether Project 12 or above and the OI addin have been installed.
             </summary>
-            <returns>true if Project 12 or above and the OI addin have been installed, else false</returns>
+            <returns>false, we no longer support Project</returns>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Office.OfficeInstall.IsOutlookInstalled">
             <summary>
@@ -8091,7 +8144,7 @@
             <summary>
             Checks whether PowerPoint 12 or above and the OI addin have been installed.
             </summary>
-            <returns>true if PowerPoint 12 or above and the OI addin have been installed, else false</returns>
+            <returns>false, we no longer support PowerPoint integrations</returns>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.Office.OfficeInstall.IsOfficeAppInstalled(System.String,System.String)">
             <summary>
@@ -8119,49 +8172,22 @@
                 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DevDiv\tfs\Servicing\15.0\officeIntegration
                 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DevDiv\tfs\Servicing\15.0\storyBoarding
             </summary>
+            We only check for the current version, so if they install dev 15 sxs with dev 16 and dev 16 did not choose to 
+            install the addin we will return 'true' on dev 15 and false on dev 16.
             <param name="productName">Name of the product, officeIntegration or storyboarding</param>
             <returns></returns>
-        </member>
-        <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.FrameworkSettingsProvider.GetTeamProjectSettings(Microsoft.TeamFoundation.Framework.Client.Catalog.Objects.CatalogBulkData,System.Func{Microsoft.TeamFoundation.Framework.Client.CatalogNode,System.Boolean})">
-            <summary>
-            Get the TeamProjectSettings objects based on a criteria delegate. The criteria is
-            then used to filter only the team projects we care about. 
-            </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.FrameworkSettingsProvider.CreateTeamProjectSettings(Microsoft.TeamFoundation.Framework.Client.Catalog.Objects.TeamProject)">
             <summary>
             Creates a TeamProjectSetttings object using the TeamProject catalog object.
             </summary>
         </member>
-        <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.ITpcSettingsAdapter.GetSettings(System.Collections.Generic.IEnumerable{System.Uri},Microsoft.TeamFoundation.Client.ProjectSettings.ProjectCollectionSettings@,System.Collections.Generic.ICollection{Microsoft.TeamFoundation.Client.ProjectSettings.TeamProjectSettings}@)">
+        <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.ITpcSettingsAdapter.GetAllSettings(Microsoft.TeamFoundation.Client.ProjectSettings.ProjectCollectionSettings@,System.Collections.Generic.ICollection{Microsoft.TeamFoundation.Client.ProjectSettings.TeamProjectSettings}@)">
             <summary>
-            Gets the Project Collection and Team Project settings for the specified
-            project uris.
+            Gets the Project Collection and Team Project settings for all projects in the collection
             </summary>
-            <param name="projectUris">The Team Project Uris</param>
             <param name="projectCollectionSettings">The ProjectCollectionSettings object</param>
             <param name="teamProjectSettings">A collection of TeamProjectSettings objects</param>
-        </member>
-        <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.ITpcSettingsAdapter.GetTeamProjectSettings(System.String)">
-            <summary>
-            This method is responsible for getting the Team Project specfic
-            settings using the Project Name.
-            </summary>
-            <param name="projectName"></param>
-        </member>
-        <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.ITpcSettingsAdapter.GetTeamProjectSettings(System.Uri)">
-            <summary>
-            This method is responsible for getting the Team Project specific
-            settings using the Project Uri.
-            </summary>
-            <param name="projectUri">The team project uri</param>
-        </member>
-        <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.ITpcSettingsAdapter.GetTeamProjectSettings(System.Collections.Generic.IEnumerable{System.Uri})">
-            <summary>
-            This method is responsible for getting a collection of Team Project
-            settings using the Team Project Uris.
-            </summary>
-            <param name="projectUris">The Team Project Uris</param>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.PreFrameworkSettingsProvider.GetProjectCollectionSettings">
             <summary>
@@ -8183,7 +8209,7 @@
             </summary>
             <param name="databaseType"></param>
         </member>
-        <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.PreFrameworkSettingsProvider.InternalGetTeamProjectSettings(System.Func{Microsoft.TeamFoundation.Server.ProjectInfo,System.Boolean})">
+        <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.PreFrameworkSettingsProvider.InternalGetTeamProjectSettings">
             <summary>
             Constructs the TeamProjectSettings data object for the criteria provided.
             </summary>
@@ -8386,6 +8412,21 @@
             See <c>SharePointUtilities.GetWellKnownProcessGuidancePageUrl</c> for more info.
             </remarks>
         </member>
+        <member name="P:Microsoft.TeamFoundation.Client.ProjectSettings.TeamProjectSettings.SccCapFlag">
+            <summary>
+            Source code control capabilities
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.Client.ProjectSettings.TeamProjectSettings.SupportsGit">
+            <summary>
+            Whether or not Git is supported
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.Client.ProjectSettings.TeamProjectSettings.SupportsTfvc">
+            <summary>
+            Whether or not TFVC is supported
+            </summary>
+        </member>
         <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.TpcSettingsStore.#ctor">
             <summary>
             Constructs an empty <code>TpcSettingsStore</code> object. This is used by TeamFoundationServer.GetService.  
@@ -8469,12 +8510,13 @@
             </summary>
             <param name="projectName"></param>
         </member>
-        <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.TpcSettingsStore.InitializeSettingsCache(System.Collections.Generic.ICollection{System.Uri})">
+        <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.TpcSettingsStore.InitializeSettingsCache">
             <summary>
             Initializes the settings store cache, making a round-trip to the server
             to get the nessceary information for the Collection and Team Projects.
             </summary>
-            <param name="projectUris">Collection of Team Project uris to initialize the cache with.</param>
+            <param name="projectUris">Collection of Team Project uris to initialize the cache with.  
+            If this is 'null' then all projects are returned (no filtering)</param>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.ProjectSettings.TpcSettingsStore.AddMissingUrisToCache(System.Collections.Generic.IEnumerable{System.Uri})">
             <summary>
@@ -10456,9 +10498,8 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.TfsConnection.SetClientCredentials(Microsoft.VisualStudio.Services.Common.VssCredentials)">
             <summary>
-            Sets the client credential on the tfsconnection and ensures the TokenStorageUrl is set accordingly on that credential.
+            The Guid that uniquely identifies the TfsConnection.
             </summary>
-            <param name="credentials"></param>
         </member>
         <member name="P:Microsoft.TeamFoundation.Client.TfsConnection.InstanceId">
             <summary>
@@ -10502,7 +10543,7 @@
         </member>
         <member name="P:Microsoft.TeamFoundation.Client.TfsConnection.Name">
             <summary>
-            Friendly name of the Team Foundation Connection.
+            Friendly name of the DevOps Connection.
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Client.TfsConnection.ApplicationName">
@@ -10516,7 +10557,7 @@
             applications such as web applications that are hosted in another process, such as w3wp.exe.
             Also, the application name should not use any characters that cannot be used in HTTP request headers.
             </remarks>
-            <example>Example of the default setting: "Team Foundation (devenv.exe, 9.0.20418.0)"</example>
+            <example>Example of the default setting: "DevOps (devenv.exe, 9.0.20418.0)"</example>
         </member>
         <member name="P:Microsoft.TeamFoundation.Client.TfsConnection.OperationName">
             <summary>
@@ -10612,7 +10653,7 @@
         </member>
         <member name="P:Microsoft.TeamFoundation.Client.TfsConnection.Credentials">
             <summary>
-            The credentials for this team foundation server instance.  This object must be
+            The credentials for this Azure DevOps Server instance.  This object must be
             either a NetworkCredential or CredentialCache object (required by the
             HttpWebRequest.Credentials property -- see MSDN).  The ICredentials interface is
             the interface implemented by both classes.
@@ -10644,7 +10685,7 @@
             Directory containing the client cache files which resides below the settings directory.
             
             This will look something like this:
-            %LOCALAPPDATA%\Microsoft\Team Foundation\[s_version]\Cache
+            %LOCALAPPDATA%\Microsoft\Azure DevOps\[s_version]\Cache
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Client.TfsConnection.ClientVolatileCacheDirectory">
@@ -10653,7 +10694,7 @@
             server connection is removed or replaced.
             
             This will look something like this:
-            %LOCALAPPDATA%\Microsoft\Team Foundation\[s_version]\Cache\Volatile
+            %LOCALAPPDATA%\Microsoft\Azure DevOps\[s_version]\Cache\Volatile
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Client.TfsConnection.ClientConfigurationDirectory">
@@ -10661,7 +10702,7 @@
             Directory containing the client configuration files which resides below the settings directory.
             
             This will look something like this:
-            %LOCALAPPDATA%\Microsoft\Team Foundation\[s_version]\Configuration
+            %LOCALAPPDATA%\Microsoft\Azure DevOps\[s_version]\Configuration
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.TfsConnection.SafeGetFolderPath(System.Environment.SpecialFolder)">
@@ -10677,7 +10718,7 @@
             Directory containing the client settings files.
             
             This will look something like this:
-            %LOCALAPPDATA%\Microsoft\Team Foundation\[s_version]
+            %LOCALAPPDATA%\Microsoft\Azure DevOps\[s_version]
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Client.TfsConnection.ClientCacheDirectoryForInstance">
@@ -10686,7 +10727,7 @@
             This will differ based on the scheme that was used to connect to the server.
             
             This will look something like this:
-            %LOCALAPPDATA%\Microsoft\Team Foundation\[s_version]\Cache\[instanceId]_[scheme]
+            %LOCALAPPDATA%\Microsoft\Azure DevOps\[s_version]\Cache\[instanceId]_[scheme]
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Client.TfsConnection.ClientVolatileCacheDirectoryForInstance">
@@ -10695,7 +10736,7 @@
             will be removed when the server is removed or connected with a different user.
             
             This will look something like this:
-            %LOCALAPPDATA%\Microsoft\Team Foundation\[s_version]\Cache\Volatile\[instanceId]_[scheme]
+            %LOCALAPPDATA%\Microsoft\Azure DevOps\[s_version]\Cache\Volatile\[instanceId]_[scheme]
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Client.TfsConnection.ClientCacheDirectoryForUser">
@@ -10705,7 +10746,7 @@
             connected.
             
             This will look something like this:
-            %LOCALAPPDATA%\Microsoft\Team Foundation\[s_version]\Cache\[userId]\[instanceId]_[scheme]
+            %LOCALAPPDATA%\Microsoft\Azure DevOps\[s_version]\Cache\[userId]\[instanceId]_[scheme]
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Client.TfsConnection.ClientCacheTimeToLive">
@@ -11402,27 +11443,32 @@
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.TFUtil.IsHostedServer(System.String)">
             <summary>
-            Checks if the server is a hosted instance of VSTS
+            Checks if the host name is a hosted instance of VSTS
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.TFUtil.IsHostedServer(System.Uri)">
             <summary>
-            Checks if the Uri is a hosted instance of VSTS
+            Checks if the URI is a hosted instance of VSTS
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.TFUtil.IsLocalDevFabric(System.String)">
             <summary>
-            Checks if the Uri is for a dev fabric instance of VSTS running locally
+            Checks if the host name is for a DevFabric instance of VSTS running locally
             </summary>
         </member>
-        <member name="M:Microsoft.TeamFoundation.Client.TFUtil.IsOrgHostedServer(System.String)">
+        <member name="M:Microsoft.TeamFoundation.Client.TFUtil.IsLegacyHostedServer(System.String)">
             <summary>
-            Checks if the server is a organization hosted instance of VSTS
+            Checks if the host name is a legacy hosted instance of VSTS
             </summary>
         </member>
-        <member name="M:Microsoft.TeamFoundation.Client.TFUtil.IsOrgHostedServer(System.Uri)">
+        <member name="M:Microsoft.TeamFoundation.Client.TFUtil.IsLegacyHostedServer(System.Uri)">
             <summary>
-            Checks if the Uri is a organization hosted instance of VSTS
+            Checks if the URI is a legacy hosted instance of VSTS
+            </summary>
+        </member>
+        <member name="M:Microsoft.TeamFoundation.Client.TFUtil.GetUniqueAccountKey(System.Uri)">
+            <summary>
+            Return a unique key for a given account, this may be in the form server/account or server
             </summary>
         </member>
         <member name="T:Microsoft.TeamFoundation.Client.TFUtil.AccessControlEntryComparer">
@@ -11508,11 +11554,6 @@
             <summary>
             A private constructor. 
             This class must me instatiated by calling TeamFoundationServer.GetService() method.
-            </summary>
-        </member>
-        <member name="P:Microsoft.TeamFoundation.Client.TswaClientHyperlinkService.CompatibleMode">
-            <summary>
-            Returns true when working with older servers.
             </summary>
         </member>
         <member name="M:Microsoft.TeamFoundation.Client.TswaClientHyperlinkService.Microsoft#TeamFoundation#Client#ITfsConnectionObject#Initialize(Microsoft.TeamFoundation.Client.TfsConnection)">
@@ -14523,6 +14564,21 @@
         <member name="P:Microsoft.TeamFoundation.Framework.Client.Catalog.Objects.TeamProject.ProjectState">
             <summary>
             Gets or sets the catalog resource property named "ProjectState".
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.Framework.Client.Catalog.Objects.TeamProject.SourceControlCapabilityFlags">
+            <summary>
+            Gets/sets the catalog resource property named "SourceControlCapabilityFlags".
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.Framework.Client.Catalog.Objects.TeamProject.SourceControlGitEnabled">
+            <summary>
+            Gets/sets the catalog resource property named "SourceControlGitEnabled".
+            </summary>
+        </member>
+        <member name="P:Microsoft.TeamFoundation.Framework.Client.Catalog.Objects.TeamProject.SourceControlTfvcEnabled">
+            <summary>
+            Gets/sets the catalog resource property named "SourceControlTfvcEnabled".
             </summary>
         </member>
         <member name="P:Microsoft.TeamFoundation.Framework.Client.Catalog.Objects.TeamProject.Guidance">

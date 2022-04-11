@@ -40,7 +40,7 @@ namespace Builds
             string choice;
             do
             {
-                Console.WriteLine("\n\nType\n5 to update build completion triggers\n0 to Exit");
+                Console.WriteLine("\n\nType\n6 to Create Build Definition from YAML\n0 to Exit");
                 choice = Console.ReadLine();
 
                 switch (choice)
@@ -82,6 +82,11 @@ namespace Builds
                             UpdateBuildDefinitionTrigger("Parts Unlimited", 32, 37);
                             break;
                         }
+                    case "6":
+                        {
+                            CreateBuildDefinitionFromYaml();
+                            break;
+                        }
                 }
 
             } while (choice != "0");
@@ -117,6 +122,40 @@ namespace Builds
             buildDefTemplate.Variables.Add("key", var1);
 
             await bhc.CreateDefinitionAsync(buildDefTemplate, teamProject);
+        }
+
+        public async static void CreateBuildDefinitionFromYaml()
+        {
+            string organizationUrl = "Your_Azure_DevOps_Organization_URL";
+            string PAT = "Your_PAT";
+            string projectName = "Your_Project_Name";
+            string yamlFileName = "Yaml_File_Name";
+            string repoId = "Your_Repo_Id";
+            string branch = "refs/heads/master";
+            string pool = "Pool_Name";
+            string definitionName = "Definition_Name_ToBe_Created";
+
+            VssConnection connection = new VssConnection(new Uri(organizationUrl), new VssBasicCredential(string.Empty, PAT));
+            BuildHttpClient bhc = connection.GetClient<BuildHttpClient>();
+
+            YamlProcess yamlProcess = new YamlProcess();
+            yamlProcess.YamlFilename = yamlFileName;
+
+            BuildRepository yamlRepo = new BuildRepository();
+            yamlRepo.Id = repoId;
+            yamlRepo.DefaultBranch = branch;
+            yamlRepo.Type = "TfsGit";
+
+            AgentPoolQueue yamlQueue = new AgentPoolQueue();
+            yamlQueue.Name = pool;
+
+            BuildDefinition yamlBuildDefinition = new BuildDefinition();
+            yamlBuildDefinition.Name = definitionName;
+            yamlBuildDefinition.Repository = yamlRepo;
+            yamlBuildDefinition.Process = yamlProcess;
+            yamlBuildDefinition.Queue = yamlQueue;
+
+            await bhc.CreateDefinitionAsync(yamlBuildDefinition, projectName);
         }
 
         public async static void UpdateBuildDefinitionRetention(string teamProject, int buildId)
